@@ -1,0 +1,101 @@
+
+a:link
+{
+color: #3D3DDB;
+text-decoration: none;
+}
+a:hover
+{
+color: #FF0000;
+text-decoration: none;
+}
+a:visited
+{
+color: #3D3DDB;
+text-decoration: none;
+}
+#menu1 {
+width: 200px;
+}
+
+#menu1 ul
+{
+font-family: Arial, Helvetica, sans-serif;
+list-style-type:none;
+margin:0;
+padding:0;
+}
+
+#menu1 li
+{
+display: inline;
+/* for IE5 and IE6 */
+}
+
+#menu1 a
+{
+color: #000000;
+text-decoration: none;
+font-size: 12px;
+display: block;
+padding: 3px;
+width: 200px;
+background-color: #595656;
+border-bottom: 1px solid #eee;
+}
+
+#menu1 a:link, #menu1 a:visited
+{
+color: #000000;
+text-decoration: none;
+}
+
+#menu1 a:hover
+{
+background-color: #00BEE4;
+color: #fff;
+}
+
+#menu1 li a#current
+{
+border-bottom: 3px solid #DAD6B7;
+background: #00BEE4;
+}
+ .bottomC {
+position:absolute;
+align:center;
+background-color: 336699;
+width:100%;
+height:10px;
+z-index:4;
+bottom:0px;
+text-align:center;
+}
+input[type=text], input[type=password]{
+padding: 5px 5px;
+border: 1px solid grey;
+margin: 4px 2px;
+border-radius: 4px;
+font-size: 12px;
+}
+input[type=button], input[type=submit], input[type=reset] { 
+background-color: #4CAF50;
+border: none; 
+color: white;
+padding: 5px 5px;
+text-decoration: none; 
+margin: 4px 2px;
+cursor: pointer; 
+border-radius: 4px; 
+font-size: 12px;
+}
+select {
+padding: 5px 5px;
+border: 1px solid grey;
+border-radius: 4px;
+background-color: #f1f1f1;
+font-size: 12px;
+}
+option {  
+  font-size: 12px;
+}  

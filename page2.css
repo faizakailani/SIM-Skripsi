@@ -1,0 +1,43 @@
+div.paging {
+	padding     : 2px;
+	margin      : 2px;
+	text-align  : center;
+	font-family : Tahoma;
+	font-size   : 12px;
+}
+div.paging a {
+	padding             : 2px 6px;
+	margin-right        : 2px;
+	border              : 1px solid #DEDFDE;
+	text-decoration     : none; 
+	color               : #0061DE;
+	background-position : bottom;
+}
+div.paging a:hover {
+	border : 1px solid #000000;
+	color  : #0061DE;
+}
+div.paging span.current {
+	padding      : 2px 6px;
+	margin-right : 2px;
+	font-weight  : bold;
+	color        : #FF0084;
+}
+div.paging span.disabled {
+	padding      : 2px 6px;
+	margin-right : 2px;
+	color        : #ADAAAD;
+	font-weight  : bold;
+}
+div.paging span.prevnext {
+  font-weight : bold;
+}
+div.paging span.prevnext a {
+  border : none;
+}
+div.paging span.prevnext a:hover {
+	border : 1px solid #000000;
+	color  : #0061DE;
+}
+
+
