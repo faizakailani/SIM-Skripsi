@@ -4,7 +4,7 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-body {
+ body {
     background-color: #f8f8f8;
 }
 
@@ -351,4 +351,56 @@ table.dataTable thead .sorting:after {
 
 .panel-yellow a:hover {
     color: #df8a13;
+}
+
+.linklist button {
+    margin-right: 3px;
+  }
+
+.align-middle {
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+.custom-table {
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  .custom-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .custom-table {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+
+.vertical-align-middle {
+    display: flex;
+    align-items: center;
+}
+
+.page-title-box {
+    padding-bottom: 1.5rem;
+    margin-top: 20px;
+}
+
+.justify-content-between {
+    -webkit-box-pack: justify!important;
+    -ms-flex-pack: justify!important;
+    justify-content: space-between!important;
 }
