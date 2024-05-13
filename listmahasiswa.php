@@ -58,7 +58,7 @@ echo "<table class='custom-table mt-10'>";
 echo "<tr bgcolor=4ba6ef>
 <th><font color=black size=2 >NIM</font></th>
 <th><font color=black size=2 >Nama</font></th>
-<th><font color=black size=2 >Program_Studi</font></th>
+<th><font color=black size=2 >Program Studi</font></th>
 <th class='align-middle'><font color=black size=2  >Foto</font></th>
 <th class='align-middle'><font color=black size=2  >Aksi</font></th>
 </tr>";
@@ -113,7 +113,7 @@ while($row = mysqli_fetch_array($result))
 echo "<tr bgcolor=4ba6ef>
 <th><font color=black size=2 >NIM</font></th>
 <th><font color=black size=2 >Nama</font></th>
-<th><font color=black size=2 >Program_Studi</font></th>
+<th><font color=black size=2 >Program Studi</font></th>
 <th class='align-middle'><font color=black size=2  >Foto</font></th>
 <th class='align-middle'><font color=black size=2  >Aksi</font></th>
 </tr>";
@@ -134,10 +134,10 @@ $firstColumn = 0;
     echo $rl[0];    
   } 
   echo "</font></td>";
-  echo "<td class='align-middle'><font face=Verdana color=black size=1><a href='images/" . $row['Foto'] . "' target=_blank><img src='images/" . $row['Foto'] . "' width=50 height=50></a></font></td>";
-  echo "<td class='align-middle'><a class=linklist href=viewmahasiswa.php?NIM=".$row['NIM']."><button type='button' class='btn btn-warning'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
-  echo "<a class=linklist href=editmahasiswa.php?NIM=".$row['NIM']."><button type='button' class='btn btn-primary'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
-  echo "<a class=linklist href=deletemahasiswa.php?NIM=".$row['NIM']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
+  echo "<td class='align-middle'><font face=Verdana color=black size=1><a href='images/" . $row['Foto'] . "' target=_blank><img src='images/" . $row['Foto'] . "' width=50 height=50 data-toggle='tooltip' data-placement='top' title='Lihat foto'></a></font></td>";
+  echo "<td class='align-middle'><a class=linklist href=viewmahasiswa.php?NIM=".$row['NIM']."><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
+  echo "<a class=linklist href=editmahasiswa.php?NIM=".$row['NIM']."><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit data'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
+  echo "<a class=linklist href=deletemahasiswa.php?NIM=".$row['NIM']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
   echo "</tr>";
   }
 echo "</table><br>";
