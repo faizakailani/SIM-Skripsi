@@ -85,7 +85,7 @@ include("tulislog.php");
         </div>
         <div class="panel-body">
             <div class="border border-dark">
-                <form action=insertdosenexec.php method=post enctype='multipart/form-data'>
+                <form action=editdosenexec.php method=post enctype='multipart/form-data'>
                     <?php
 						$result = mysqli_query($con, "SELECT * FROM dosen where NIDN = '" . mysqli_real_escape_string($con, $_GET['NIDN']) . "'");
 						while ($row = mysqli_fetch_assoc($result)) {
