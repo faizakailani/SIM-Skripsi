@@ -55,7 +55,8 @@ $resultcari = mysqli_query($con, $dd);
 if ( $obj = mysqli_fetch_object($resultcari) )
 {
 $result = mysqli_query($con, $dd);
-echo "<font color=black size=2>Hasil Pencarian</font>"; 
+echo "<font color=black size=2>Hasil Pencarian</font>";
+echo "<div class='table-responsive'> "; 
 echo "<table class='custom-table mt-10'>"; 
 echo "<tr bgcolor=4ba6ef>
 <th><font color=black size=2>NIDN</font></th>
@@ -106,6 +107,7 @@ $total_data = mysqli_num_rows(mysqli_query($con, "SELECT * FROM dosen"));
 $jmlhal = ceil($total_data / $batas);
 
 //Table start
+echo "<div class='table-responsive'> ";
 echo "<table class='custom-table'>"; 
 $firstColumn = 1;
 $warna = 0;
@@ -136,6 +138,7 @@ $firstColumn = 0;
   echo "</tr>";
   }
 echo "</table><br>";
+echo "</div>";
 //Table end
 
 // Langkah 3: Hitung total data dan halaman
@@ -174,6 +177,7 @@ echo "</div>";
 
 echo "<div class='text-center'>";
 echo "<p>Total <b>$jmldata</b> data</p>";
+mysqli_close($con);
 echo "</div>";
 
 }

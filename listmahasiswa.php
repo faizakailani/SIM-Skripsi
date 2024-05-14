@@ -66,10 +66,10 @@ $warna = 0;
 while($row = mysqli_fetch_array($result))
   {
   if ($warna == 0){
-  	echo "<tr bgcolor=E5E5E5 onMouseOver=\"this.bgColor='#8888FF';\" onMouseOut=\"this.bgColor='E5E5E5';\">";
+  	echo "<tr bgcolor=FFFFFF onMouseOver=\"this.bgColor='#D3DCE3';\" onMouseOut=\"this.bgColor='FFFFFF';\">";
 	$warna = 1;
   }else{
-  	echo "<tr bgcolor=D5D5D5 onMouseOver=\"this.bgColor='#8888FF';\" onMouseOut=\"this.bgColor='D5D5D5';\">";
+  	echo "<tr bgcolor=FFFFFF onMouseOver=\"this.bgColor='#D3DCE3';\" onMouseOut=\"this.bgColor='FFFFFF';\">";
 	$warna = 0;
   }  
   echo "<td><font face=Verdana color=black size=2>" . $row['NIM'] . "</font></td>";

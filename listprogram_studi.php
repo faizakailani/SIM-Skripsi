@@ -56,6 +56,7 @@ if ( $obj = mysqli_fetch_object($resultcari) )
 {
 $result = mysqli_query($con, $dd);
 echo "<font color=black size=2>Hasil Pencarian</font>";  
+echo "<div class='table-responsive'> ";
 echo "<table class='custom-table mt-10'>"; 
 echo "<tr bgcolor=4ba6ef>
 <th><font color=black size=2>Kode</font></th>
@@ -84,6 +85,7 @@ while($row = mysqli_fetch_array($result))
   echo "</tr>";
   }
 echo "</table><br><br>";
+echo "</div>";
 
 } else {
 	echo "<font size=2 face=Verdana color=#FF0000>Data program_studi not found - try again!</font><br><br>";
@@ -101,6 +103,7 @@ else{
 	$posisi = ($halaman-1) * $batas;
 }
 $result = mysqli_query($con, "SELECT * FROM program_studi LIMIT $posisi,$batas");
+echo "<div class='table-responsive'> ";
 echo "<table class='custom-table mt-10'>"; 
 $firstColumn = 1;
 $warna = 0;
@@ -133,6 +136,7 @@ $firstColumn = 0;
   echo "</tr>";
   }
 echo "</table><br>";
+echo "</div>";
 //Langkah 3: Hitung total data dan halaman
 $tampil2 = mysqli_query($con, "SELECT * FROM program_studi");
 $jmldata = mysqli_num_rows($tampil2);
