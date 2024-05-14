@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["Email"])) {
-	header("location:index.php");
+    header("location:index.php");
 }
 ?>
 <?php
@@ -11,13 +11,13 @@ include("menu.php");
 ?>
 <div id="page-wrapper" style="padding-top: 2rem;">
     <?php
-	//cek otoritas
-	$q = "SELECT * FROM tw_hak_akses where tabel='mahasiswa' and user = '" . $_SESSION['Email'] . "' and insertData='1'";
-	$r = mysqli_query($con, $q);
-	if ($obj = @mysqli_fetch_object($r)) {
-	?>
+    //cek otoritas
+    $q = "SELECT * FROM tw_hak_akses where tabel='mahasiswa' and user = '" . $_SESSION['Email'] . "' and insertData='1'";
+    $r = mysqli_query($con, $q);
+    if ($obj = @mysqli_fetch_object($r)) {
+    ?>
     <?php
-		?>
+        ?>
     <link href="standar.css" rel="stylesheet" type="text/css">
 
     <!-- calendar -->
@@ -99,9 +99,9 @@ include("menu.php");
                         <select name="Program_Studi" class="form-control" required>
                             <option selected disabled>-- Pilih --</option>
                             <?php $result = mysqli_query($con, "select * from program_studi");
-								while ($r = mysqli_fetch_array($result)) {
-									echo "<option value='" . $r['Kode'] . "'>" . $r['Kode'] . " | " . $r['Program_Studi'] . "</option>";
-								} ?>
+                                while ($r = mysqli_fetch_array($result)) {
+                                    echo "<option value='" . $r['Kode'] . "'>" . $r['Kode'] . " | " . $r['Program_Studi'] . "</option>";
+                                } ?>
                         </select>
                     </div>
                     <div style="margin-bottom: 3rem;">
@@ -114,10 +114,10 @@ include("menu.php");
         </div>
     </div>
     <?php
-		include("footer.php");
-		?>
+        include("footer.php");
+        ?>
     <?php
-	} else {
-		//header("Location:content.php");
-	}
-	?>
+    } else {
+        //header("Location:content.php");
+    }
+    ?>
