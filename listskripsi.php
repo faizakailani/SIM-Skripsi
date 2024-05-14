@@ -8,16 +8,16 @@ header("location:index.php");
 include("db.php");  
 include("header.php"); 
 include("menu.php"); 
-?>      
+?>
 <div id="page-wrapper">
-<?php
+    <?php
 //cek otoritas
 $q = "SELECT * FROM tw_hak_akses where tabel='skripsi' and user = '". $_SESSION['Email'] ."' and listData='1'";
 $r = mysqli_query($con, $q);
 if ( $obj = @mysqli_fetch_object($r) )
  {
 ?>
-<?php
+    <?php
 echo "<br><font face=Verdana color=black size=1>skripsi</font><br><br>";
 echo "<a href=insertskripsi.php><button type='button' class='btn btn-light'><font face=Verdana color=black size=1><i class='fa fa-plus'></i>&nbsp;Insert</font></button></a>";
 echo "&nbsp;&nbsp;<a href='printskripsi.php' target=_blank><button type='button' class='btn btn-light'><font face=Verdana color=black size=1><i class='fa fa-print'></i>&nbsp;Print</font></button></a>";
@@ -27,7 +27,7 @@ echo "<br><br><form action=listskripsi.php method=post>
 $menu=mysqli_query($con, "show columns from skripsi");
 while($rowmenu = mysqli_fetch_array($menu))
 {
-    echo "<option value=". $rowmenu[Field] .">". $rowmenu[Field]."</option>";
+    echo "<option value=". $rowmenu['Field'] .">". $rowmenu['Field']."</option>";
 }
 echo "    </select>
 <input type=text  class='form-control' name=cari>
@@ -236,9 +236,9 @@ echo "<p align=center><font face=Verdana color=black size=1><b>$jmldata</b> data
 mysqli_close($con);
 echo "</td></tr>";
 }
- ?>   
- </div> 
- <?php 
+ ?>
+</div>
+<?php 
 include("footer.php");
 ?>
 <?php
