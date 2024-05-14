@@ -80,7 +80,7 @@ include("menu.php");
     <!-- /TinyMCE -->
     <div class="panel panel-primary">
         <div class=" panel-heading">
-            <h3 class="panel-title">Mahasiswa</h3>
+            <h3 class="panel-title">Edit Mahasiswa</h3>
         </div>
         <div class="panel-body">
             <div class="border border-dark">

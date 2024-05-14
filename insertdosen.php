@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["Email"])) {
-	header("location:index.php");
+    header("location:index.php");
 }
 ?>
 <?php
@@ -11,13 +11,13 @@ include("menu.php");
 ?>
 <div id="page-wrapper" style="padding-top: 2rem">
     <?php
-	//cek otoritas
-	$q = "SELECT * FROM tw_hak_akses where tabel='dosen' and user = '" . $_SESSION['Email'] . "' and insertData='1'";
-	$r = mysqli_query($con, $q);
-	if ($obj = @mysqli_fetch_object($r)) {
-	?>
+    //cek otoritas
+    $q = "SELECT * FROM tw_hak_akses where tabel='dosen' and user = '" . $_SESSION['Email'] . "' and insertData='1'";
+    $r = mysqli_query($con, $q);
+    if ($obj = @mysqli_fetch_object($r)) {
+    ?>
     <?php
-		?>
+        ?>
     <link href="standar.css" rel="stylesheet" type="text/css">
 
     <!-- calendar -->
@@ -80,7 +80,7 @@ include("menu.php");
     <!-- /TinyMCE -->
     <div class="panel panel-primary">
         <div class=" panel-heading">
-            <h3 class="panel-title">Dosen</h3>
+            <h3 class="panel-title">Tambah Dosen</h3>
         </div>
         <div class="panel-body">
             <div class="border border-dark">
@@ -104,10 +104,10 @@ include("menu.php");
         </div>
     </div>
     <?php
-		include("footer.php");
-		?>
+        include("footer.php");
+        ?>
     <?php
-	} else {
-		//header("Location:content.php");
-	}
-	?>
+    } else {
+        //header("Location:content.php");
+    }
+    ?>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["Email"])) {
-	header("location:index.php");
+    header("location:index.php");
 }
 ?>
 <?php
@@ -12,13 +12,13 @@ include("tulislog.php");
 ?>
 <div id="page-wrapper">
     <?php
-	//cek otoritas
-	$q = "SELECT * FROM tw_hak_akses where tabel='skripsi' and user = '" . $_SESSION['Email'] . "' and editData='1'";
-	$r = mysqli_query($con, $q);
-	if ($obj = @mysqli_fetch_object($r)) {
-	?>
+    //cek otoritas
+    $q = "SELECT * FROM tw_hak_akses where tabel='skripsi' and user = '" . $_SESSION['Email'] . "' and editData='1'";
+    $r = mysqli_query($con, $q);
+    if ($obj = @mysqli_fetch_object($r)) {
+    ?>
     <?php
-		?>
+        ?>
     <link href="standar.css" rel="stylesheet" type="text/css">
 
     <!-- calendar -->
@@ -81,15 +81,15 @@ include("tulislog.php");
     <!-- /TinyMCE -->
     <div class="panel panel-primary">
         <div class=" panel-heading">
-            <h3 class="panel-title">Skripsi</h3>
+            <h3 class="panel-title">Edit Skripsi</h3>
         </div>
         <div class="panel-body">
             <div class="border border-dark">
                 <form action=editskripsiexec.php method=post enctype='multipart/form-data'>
                     <?php $result = mysqli_query($con, "SELECT * FROM skripsi where id = " . mysqli_real_escape_string($con, $_GET['id']) . "");
-						while ($row = mysqli_fetch_array($result)) {
+                        while ($row = mysqli_fetch_array($result)) {
 
-						?>
+                        ?>
                     <input type="hidden" name="pk" value="<?php echo $row['id'] ?>">
 
                     <div style="margin-bottom: 2rem;">
@@ -100,43 +100,43 @@ include("tulislog.php");
                         <label for="inputNIDN" class="form-label">NIM</label>
                         <select class='form-control' name='NIM'>
                             <?php $result = mysqli_query($con, "select * from mahasiswa");
-									while ($r = mysqli_fetch_array($result)) {
-										echo "<option value='" . $r['NIM'] . "'>" . $r['NIM'] . " | " . $r['Nama'] . "</option>";
-									}
-									?>
+                                    while ($r = mysqli_fetch_array($result)) {
+                                        echo "<option value='" . $r['NIM'] . "'>" . $r['NIM'] . " | " . $r['Nama'] . "</option>";
+                                    }
+                                    ?>
                         </select>
                     </div>
                     <div style="margin-bottom: 2rem;">
                         <label for="inputNIDN" class="form-label">Pembimbing</label>
                         <select name="Pembimbing" class="form-control">
                             <?php $result = mysqli_query($con, "select * from dosen");
-									while ($r = mysqli_fetch_array($result)) {
-										$selected = $r['NIDN'] == $row['Pembimbing'] ? 'selected' : '';
-										echo "<option value='" . $r['NIDN'] . "' $selected>" . $r['NIDN'] . " | " . $r['Nama'] . "</option>";
-									}
-									?>
+                                    while ($r = mysqli_fetch_array($result)) {
+                                        $selected = $r['NIDN'] == $row['Pembimbing'] ? 'selected' : '';
+                                        echo "<option value='" . $r['NIDN'] . "' $selected>" . $r['NIDN'] . " | " . $r['Nama'] . "</option>";
+                                    }
+                                    ?>
                         </select>
                     </div>
                     <div style="margin-bottom: 2rem;">
                         <label for="inputNIDN" class="form-label">Penguji 1</label>
                         <select name="Penguji1" class="form-control">
                             <?php $result = mysqli_query($con, "select * from dosen");
-									while ($r = mysqli_fetch_array($result)) {
-										$selected = $r['NIDN'] == $row['Penguji1'] ? 'selected' : '';
-										echo "<option value='" . $r['NIDN'] . "' $selected>" . $r['NIDN'] . " | " . $r['Nama'] . "</option>";
-									}
-									?>
+                                    while ($r = mysqli_fetch_array($result)) {
+                                        $selected = $r['NIDN'] == $row['Penguji1'] ? 'selected' : '';
+                                        echo "<option value='" . $r['NIDN'] . "' $selected>" . $r['NIDN'] . " | " . $r['Nama'] . "</option>";
+                                    }
+                                    ?>
                         </select>
                     </div>
                     <div style="margin-bottom: 2rem;">
                         <label for="inputNIDN" class="form-label">Penguji 2</label>
                         <select name="Penguji2" class="form-control">
                             <?php $result = mysqli_query($con, "select * from dosen");
-									while ($r = mysqli_fetch_array($result)) {
-										$selected = $r['NIDN'] == $row['Penguji2'] ? 'selected' : '';
-										echo "<option value='" . $r['NIDN'] . "' $selected>" . $r['NIDN'] . " | " . $r['Nama'] . "</option>";
-									}
-									?>
+                                    while ($r = mysqli_fetch_array($result)) {
+                                        $selected = $r['NIDN'] == $row['Penguji2'] ? 'selected' : '';
+                                        echo "<option value='" . $r['NIDN'] . "' $selected>" . $r['NIDN'] . " | " . $r['Nama'] . "</option>";
+                                    }
+                                    ?>
                         </select>
                     </div>
                     <div style="margin-bottom: 2rem;">
@@ -193,10 +193,10 @@ include("tulislog.php");
     </div>
 </div>
 <?php
-		include("footer.php");
+        include("footer.php");
 ?>
 <?php
-	} else {
-		//header("Location:content.php");
-	}
+    } else {
+        //header("Location:content.php");
+    }
 ?>

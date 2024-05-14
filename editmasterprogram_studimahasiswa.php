@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["Email"])) {
-	header("location:index.php");
+    header("location:index.php");
 }
 ?>
 <?php
@@ -12,13 +12,13 @@ include("tulislog.php");
 ?>
 <div id="page-wrapper">
     <?php
-	//cek otoritas
-	$q = "SELECT * FROM tw_hak_akses where tabel='program_studi/mahasiswa' and user = '" . $_SESSION['Email'] . "' and editData='1'";
-	$r = mysqli_query($con, $q);
-	if ($obj = @mysqli_fetch_object($r)) {
-	?>
+    //cek otoritas
+    $q = "SELECT * FROM tw_hak_akses where tabel='program_studi/mahasiswa' and user = '" . $_SESSION['Email'] . "' and editData='1'";
+    $r = mysqli_query($con, $q);
+    if ($obj = @mysqli_fetch_object($r)) {
+    ?>
     <?php
-		?>
+        ?>
     <link href="standar.css" rel="stylesheet" type="text/css">
 
     <!-- calendar -->
@@ -81,15 +81,15 @@ include("tulislog.php");
     <!-- /TinyMCE -->
     <div class="panel panel-primary">
         <div class=" panel-heading">
-            <h3 class="panel-title">Edit Program Studi</h3>
+            <h3 class="panel-title">Edit Master Program Studi</h3>
         </div>
         <div class="panel-body">
             <div class="border border-dark">
                 <form action="editmasterprogram_studimahasiswaexec.php" method="post">
                     <?php
-						$result = mysqli_query($con, "SELECT * FROM program_studi WHERE Kode = '" . mysqli_real_escape_string($con, $_GET['Kode']) . "'");
-						while ($row = mysqli_fetch_array($result)) {
-						?>
+                        $result = mysqli_query($con, "SELECT * FROM program_studi WHERE Kode = '" . mysqli_real_escape_string($con, $_GET['Kode']) . "'");
+                        while ($row = mysqli_fetch_array($result)) {
+                        ?>
                     <input type="hidden" name="pk" value="<?php echo $row['Kode'] ?>">
                     <div style="margin-bottom: 2rem;">
                         <label for="inputKode" class="form-label">Kode</label>
@@ -106,17 +106,17 @@ include("tulislog.php");
                         <select name="Kaprodi" class="form-control" required>
                             <option selected disabled>-- Pilih --</option>
                             <?php
-									$rs = mysqli_query($con, "SELECT * FROM dosen");
-									while ($r = mysqli_fetch_array($rs)) {
-										$selected = ($r['NIDN'] == $row['NIDN_Kaprodi']) ? 'selected' : '';
-										echo "<option value='" . $r['NIDN'] . "|" . $r['Nama'] . "' $selected>" . $r['NIDN'] . " | " . $r['Nama'] . "</option>";
-									}
-									?>
+                                    $rs = mysqli_query($con, "SELECT * FROM dosen");
+                                    while ($r = mysqli_fetch_array($rs)) {
+                                        $selected = ($r['NIDN'] == $row['NIDN_Kaprodi']) ? 'selected' : '';
+                                        echo "<option value='" . $r['NIDN'] . "|" . $r['Nama'] . "' $selected>" . $r['NIDN'] . " | " . $r['Nama'] . "</option>";
+                                    }
+                                    ?>
                         </select>
                     </div>
                     <?php
-						}
-						?>
+                        }
+                        ?>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </form>
 
@@ -125,10 +125,10 @@ include("tulislog.php");
     </div>
 </div>
 <?php
-		include("footer.php");
+        include("footer.php");
 ?>
 <?php
-	} else {
-		//header("Location:content.php");
-	}
+    } else {
+        //header("Location:content.php");
+    }
 ?>

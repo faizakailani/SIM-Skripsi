@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["Email"])) {
-	header("location:index.php");
+    header("location:index.php");
 }
 ?>
 <?php
@@ -12,13 +12,13 @@ include("tulislog.php");
 ?>
 <div id="page-wrapper" style="padding-top: 2rem">
     <?php
-	//cek otoritas
-	$q = "SELECT * FROM tw_hak_akses where tabel='dosen' and user = '" . $_SESSION['Email'] . "' and editData='1'";
-	$r = mysqli_query($con, $q);
-	if ($obj = @mysqli_fetch_object($r)) {
-	?>
+    //cek otoritas
+    $q = "SELECT * FROM tw_hak_akses where tabel='dosen' and user = '" . $_SESSION['Email'] . "' and editData='1'";
+    $r = mysqli_query($con, $q);
+    if ($obj = @mysqli_fetch_object($r)) {
+    ?>
     <?php
-		?>
+        ?>
     <link href="standar.css" rel="stylesheet" type="text/css">
 
     <!-- calendar -->
@@ -81,15 +81,15 @@ include("tulislog.php");
     <!-- /TinyMCE -->
     <div class="panel panel-primary">
         <div class=" panel-heading">
-            <h3 class="panel-title">Dosen</h3>
+            <h3 class="panel-title">Edit Dosen</h3>
         </div>
         <div class="panel-body">
             <div class="border border-dark">
                 <form action=editdosenexec.php method=post enctype='multipart/form-data'>
                     <?php
-						$result = mysqli_query($con, "SELECT * FROM dosen where NIDN = '" . mysqli_real_escape_string($con, $_GET['NIDN']) . "'");
-						while ($row = mysqli_fetch_assoc($result)) {
-						?>
+                        $result = mysqli_query($con, "SELECT * FROM dosen where NIDN = '" . mysqli_real_escape_string($con, $_GET['NIDN']) . "'");
+                        while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
                     <input type="hidden" name="pk" value="<?php echo $row['NIDN'] ?>">
                     <div style="margin-bottom: 2rem;">
                         <label for="inputNIDN" class="form-label">NIDN</label>
@@ -104,14 +104,14 @@ include("tulislog.php");
                     <div style="margin-bottom: 3rem;">
                         <label for="inputFile" class="form-label">Foto</label><br>
                         <?php if (isset($row['NIDN'])) {
-									if (!empty($row['Foto'])) { ?>
+                                    if (!empty($row['Foto'])) { ?>
                         <a href="images/<?php echo $row['Foto'] ?>" target="_blank"><img src="
                             images/<?php echo $row['Foto'] ?>" width="100px" height="100px" alt="foto"
                                 style="margin: 0 0 5px 10px"></a>
                         <input type="text" class="form-control" name="Foto" id="inputFile" required
                             value="<?php echo $row['Foto'] ?> " readonly>
                         <?php }
-								} ?>
+                                } ?>
                         <a class="btn btn-success" style="color: white; font-weight: 5px"
                             href="uploadimagedosen.php?NIDN=<?php echo $row['NIDN'] ?>">Upload image</a>
                     </div>
@@ -122,10 +122,10 @@ include("tulislog.php");
         </div>
     </div>
     <?php
-		include("footer.php");
-		?>
+        include("footer.php");
+        ?>
     <?php
-	} else {
-		//header("Location:content.php");
-	}
-	?>
+    } else {
+        //header("Location:content.php");
+    }
+    ?>
