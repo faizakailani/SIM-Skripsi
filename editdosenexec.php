@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(!isset($_SESSION["Email"])){
-header("location:index.php");
+if (!isset($_SESSION["Email"])) {
+    header("location:index.php");
 }
 ?>
 <?php
@@ -13,7 +13,7 @@ $Nama = mysqli_real_escape_string($con, $_POST["Nama"]);
 $Foto = mysqli_real_escape_string($con, $_POST["Foto"]);
 
 mysqli_query($con, "update dosen set NIDN='$NIDN', Nama='$Nama', Foto='$Foto' where NIDN='$pk'");
- tulislog("update dosen", $con); 
+tulislog("update dosen", $con);
 header("Location: listdosen.php");
 mysqli_close($con);
 ?>

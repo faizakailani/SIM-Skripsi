@@ -1,57 +1,58 @@
 <?php
 session_start();
-if(!isset($_SESSION["Email"])){
-header("location:index.php");
+if (!isset($_SESSION["Email"])) {
+  header("location:index.php");
 }
 ?>
-<?php     
-include("db.php");  
-include("header.php"); 
-include("menu.php"); 
-include("tulislog.php"); 
-?>      
-<div id="page-wrapper">
 <?php
-//cek otoritas
-$q = "SELECT * FROM tw_hak_akses where tabel='mahasiswa/skripsi' and user = '". $_SESSION['Email'] ."' and viewData='1'";
-$r = mysqli_query($con, $q);
-if ( $obj = @mysqli_fetch_object($r) )
- {
+include("db.php");
+include("header.php");
+include("menu.php");
+include("tulislog.php");
 ?>
-<?php
-echo "<td bgcolor=F5F5F5 valign=top>";
-echo "<div class='table-responsive'> "; 
-echo "<table class='table table-striped'>"; 
-echo "<tr><td colspan=2><font face=Verdana color=black size=1>mahasiswa</font></td></tr>";
-$result = mysqli_query($con, "SELECT * FROM mahasiswa where NIM = '". $_GET['NIM'] . "'");
-while($row = mysqli_fetch_array($result))
-{
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>NIM</font></td>";
-echo "<td bgcolor=CCEEEE><font face=Verdana color=black size=1>" . $row['NIM'] . "</font></td>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>Nama</font></td>";
-echo "<td bgcolor=CCEEEE><font face=Verdana color=black size=1>" . $row['Nama'] . "</font></td>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>Program_Studi</font></td>";
-  echo "<td bgcolor=CCEEEE><font face=Verdana color=black size=1>" . $row['Program_Studi'] . "<br>";
-  $l = mysqli_query($con, "select Program_Studi from program_studi where Kode = '". $row['Program_Studi'] ."'"); 
-  while($rl = mysqli_fetch_array($l)){  
-    echo $rl[0];    
-  } 
-  echo "</font></td></tr>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>Foto</font></td>";
-  echo "<td bgcolor=CCEEEE><font face=Verdana color=black size=1><a href='images/" . $row['Foto'] . "' target=_blank><img src='images/" . $row['Foto'] . "' width=50 height=50></a></font></td>";
-echo "<tr><td colspan=2 align=center><a href=listmastermahasiswaskripsi.php><button type='button' class='btn btn-warning'><font face=Verdana size=1><i class='fa fa-check'></i>&nbsp;Back</font></button></a></td></tr>";
-echo "</table></td></tr>";
-echo "</table><br>";
-echo "</div>"; 
-}
- tulislog("view mahasiswa", $con); 
- ?>   
- </div> 
- <?php 
-include("footer.php");
-?>
-<?php
-} else {
- //header("Location:content.php");
-}
-?>
+<div id="page-wrapper" style="padding-top: 2rem">
+    <?php
+  //cek otoritas
+  $q = "SELECT * FROM tw_hak_akses where tabel='mahasiswa/skripsi' and user = '" . $_SESSION['Email'] . "' and viewData='1'";
+  $r = mysqli_query($con, $q);
+  if ($obj = @mysqli_fetch_object($r)) {
+  ?>
+    <div style="display: flex; justify-content: center; color: white">
+
+        <div style="width: 30rem; border: 1px solid #ccc; border-radius: 5px; overflow: hidden; margin-bottom: 20px; ">
+            <?php
+        $result = mysqli_query($con, "SELECT * FROM mahasiswa where NIM = '" . mysqli_real_escape_string($con, $_GET['NIM']) . "'");
+        while ($row = mysqli_fetch_array($result)) {
+        ?>
+            <img src="images/<?php echo $row['Foto']; ?>" class="card-img-top" alt="Foto Dosen"
+                style="width: 100%; height: auto;">
+            <div style="padding: 20px; background-color: gray">
+                <h5 style="margin-bottom: 10px;"><?php echo $row['Nama']; ?></h5>
+                <p class="card-text">NIM<span style="margin-left: 18px;"><?php echo ': ' . $row['NIM']; ?></span>
+                </p>
+                <p class="card-text">Nama<span style="margin-left: 7px"><?php echo ': ' . $row['Nama']; ?></span>
+                </p>
+                <?php $p = mysqli_query($con, "SELECT * FROM program_studi WHERE Kode = '$row[Program_Studi]'");
+            $p_data = mysqli_fetch_assoc($p);
+            ?>
+
+                <p class="card-text">Prodi<span
+                        style="margin-left: 12px"><?php echo ': ' . $p_data['Program_Studi']; ?></span>
+                </p>
+                <a href="listmastermahasiswaskripsi.php"
+                    style=" margin-top: 10px;text-decoration: none; display: inline-block; padding: 8px 16px; background-color: #007bff; color: #fff; border-radius: 5px;">Back</a>
+            </div>
+        </div>
+        <?php
+        }
+        tulislog("view mahasiswa", $con);
+    ?>
+    </div>
+    <?php
+    include("footer.php");
+    ?>
+    <?php
+  } else {
+    //header("Location:content.php");
+  }
+  ?>
