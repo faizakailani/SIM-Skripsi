@@ -1,177 +1,193 @@
 <?php
 session_start();
-if (!isset($_SESSION["Email"])) {
-  header("location:index.php");
+if(!isset($_SESSION["Email"])){
+header("location:index.php");
 }
 ?>
-<?php
-include("db.php");
-include("header.php");
-include("menu.php");
-?>
+<?php     
+include("db.php");  
+include("header.php"); 
+include("menu.php"); 
+?>      
 <div id="page-wrapper">
-  <?php
-  //cek otoritas
-  $q = "SELECT * FROM tw_hak_akses where tabel='mahasiswa' and user = '" . $_SESSION['Email'] . "' and listData='1'";
-  $r = mysqli_query($con, $q);
-  if ($obj = @mysqli_fetch_object($r)) {
-  ?>
-    <?php
-    echo "<br><font face=Verdana color=black size=1>mahasiswa</font><br><br>";
-    echo "<a href=insertmahasiswa.php><button type='button' class='btn btn-light'><font face=Verdana color=black size=1><i class='fa fa-plus'></i>&nbsp;Insert</font></button></a>";
-    echo "&nbsp;&nbsp;<a href='printmahasiswa.php' target=_blank><button type='button' class='btn btn-light'><font face=Verdana color=black size=1><i class='fa fa-print'></i>&nbsp;Print</font></button></a>";
-    //cari tabel
-    echo "<br><br><form action=listmahasiswa.php method=post>
- <select class='form-control' name=select>";
-    $menu = mysqli_query($con, "show columns from mahasiswa");
-    while ($rowmenu = mysqli_fetch_array($menu)) {
-      echo "<option value=" . $rowmenu['Field'] . ">" . $rowmenu['Field'] . "</option>";
-    }
-    echo "    </select>
-<input type=text  class='form-control' name=cari>
-<button type='submit' class='btn btn-success'><font face=Verdana size=1><i class='fa fa-search-plus'></i>Search</font></button>
-</form><br>";
-    if (isset($_POST["cari"])) {
-      $cari = mysqli_real_escape_string($con, $_POST["cari"]);
-    }
-    if (isset($_POST["cari"]) && ($_POST["cari"] != "")) {
-      //hasil pencarian tabel
-      $dd = "SELECT * FROM mahasiswa where " . $_POST["select"] . " like '%" . $cari . "%'";
-      $resultcari = mysqli_query($con, $dd);
-      if ($obj = mysqli_fetch_object($resultcari)) {
-        $result = mysqli_query($con, $dd);
-        echo "<font face=Verdana color=black size=1>Hasil Pencarian</font>";
-        echo "<div class='table-responsive'> ";
-        echo "<table class='table table-striped'> 
-<tr bgcolor=D3DCE3> 
-<th></th>
-<th></th>
-<th></th>
-<th><font face=Verdana color=black size=1>NIM</font></th>
-<th><font face=Verdana color=black size=1>Nama</font></th>
-<th><font face=Verdana color=black size=1>Program_Studi</font></th>
-<th><font face=Verdana color=black size=1>Foto</font></th>
-</tr>";
-        $warna = 0;
-        while ($row = mysqli_fetch_array($result)) {
-          if ($warna == 0) {
-            echo "<tr bgcolor=E5E5E5 onMouseOver=\"this.bgColor='#8888FF';\" onMouseOut=\"this.bgColor='E5E5E5';\">";
-            $warna = 1;
-          } else {
-            echo "<tr bgcolor=D5D5D5 onMouseOver=\"this.bgColor='#8888FF';\" onMouseOut=\"this.bgColor='D5D5D5';\">";
-            $warna = 0;
-          }
-          echo "<td><a class=linklist href=viewmahasiswa.php?NIM=" . $row['NIM'] . "><button type='button' class='btn btn-warning'><font face=Verdana size=1><i class='fa fa-check'></i></font></button></a></td>";
-          echo "<td><a class=linklist href=editmahasiswa.php?NIM=" . $row['NIM'] . "><button type='button' class='btn btn-primary'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a></td>";
-          echo "<td><a class=linklist href=deletemahasiswa.php?NIM=" . $row['NIM'] . " onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
-          echo "<td><font face=Verdana color=black size=1>" . $row['NIM'] . "</font></td>";
-          echo "<td><font face=Verdana color=black size=1>" . $row['Nama'] . "</font></td>";
-          echo "<td><font face=Verdana color=black size=1>" . $row['Program_Studi'] . "<br>";
-          $l = mysqli_query($con, "select Program_Studi from program_studi where Kode = '" . $row['Program_Studi'] . "'");
-          while ($rl = mysqli_fetch_array($l)) {
-            echo $rl[0];
-          }
-          echo "</font></td>";
-          echo "<td><font face=Verdana color=black size=1><a href='images/" . $row['Foto'] . "' target=_blank><img src='images/" . $row['Foto'] . "' width=50 height=50></a></font></td>";
-          echo "</tr>";
-        }
-        echo "</table><br><br>";
-        echo "</div>";
-      } else {
-        echo "<font size=2 face=Verdana color=#FF0000>Data mahasiswa not found - try again!</font><br><br>";
-      }
-    }
-    if ((!isset($_POST["cari"])) or ($_POST["cari"] == "")) {
-      // Langkah 1: Tentukan batas,cek halaman & posisi data
-      $batas   = 100;
-      if (isset($_GET["halaman"])) {
-        $halaman = $_GET['halaman'];
-      }
-      if (empty($halaman)) {
-        $posisi  = 0;
-        $halaman = 1;
-      } else {
-        $posisi = ($halaman - 1) * $batas;
-      }
-      $result = mysqli_query($con, "SELECT * FROM mahasiswa LIMIT $posisi,$batas");
-      echo "<div class='table-responsive'> ";
-      echo "<table class='table table-striped'>";
-      $firstColumn = 1;
-      $warna = 0;
-      while ($row = mysqli_fetch_array($result)) {
-        if ($firstColumn == 1) {
-          echo "<tr bgcolor=D3DCE3>
-<th></th>
-<th></th>
-<th></th>
-<th><font face=Verdana color=black size=1>NIM</font></th>
-<th><font face=Verdana color=black size=1>Nama</font></th>
-<th><font face=Verdana color=black size=1>Program_Studi</font></th>
-<th><font face=Verdana color=black size=1>Foto</font></th>
-</tr>";
-          $firstColumn = 0;
-        }
-        if ($warna == 0) {
-          echo "<tr bgcolor=E5E5E5 onMouseOver=\"this.bgColor='#8888FF';\" onMouseOut=\"this.bgColor='E5E5E5';\">";
-          $warna = 1;
-        } else {
-          echo "<tr bgcolor=D5D5D5 onMouseOver=\"this.bgColor='#8888FF';\" onMouseOut=\"this.bgColor='D5D5D5';\">";
-          $warna = 0;
-        }
-        echo "<td><a class=linklist href=viewmahasiswa.php?NIM=" . $row['NIM'] . "><button type='button' class='btn btn-warning'><font face=Verdana size=1><i class='fa fa-check'></i></font></button></a></td>";
-        echo "<td><a class=linklist href=editmahasiswa.php?NIM=" . $row['NIM'] . "><button type='button' class='btn btn-primary'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a></td>";
-        echo "<td><a class=linklist href=deletemahasiswa.php?NIM=" . $row['NIM'] . " onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
-        echo "<td><font face=Verdana color=black size=1>" . $row['NIM'] . "</font></td>";
-        echo "<td><font face=Verdana color=black size=1>" . $row['Nama'] . "</font></td>";
-        echo "<td><font face=Verdana color=black size=1>" . $row['Program_Studi'] . "<br>";
-        $l = mysqli_query($con, "select Program_Studi from program_studi where Kode = '" . $row['Program_Studi'] . "'");
-        while ($rl = mysqli_fetch_array($l)) {
-          echo $rl[0];
-        }
-        echo "</font></td>";
-        echo "<td><font face=Verdana color=black size=1><a href='images/" . $row['Foto'] . "' target=_blank><img src='images/" . $row['Foto'] . "' width=50 height=50></a></font></td>";
-        echo "</tr>";
-      }
-      echo "</table><br>";
-      echo "</div>";
-      //Langkah 3: Hitung total data dan halaman
-      $tampil2 = mysqli_query($con, "SELECT * FROM mahasiswa");
-      $jmldata = mysqli_num_rows($tampil2);
-      $jmlhal  = ceil($jmldata / $batas);
-      echo "<div class=paging>";
-      // Link ke halaman sebelumnya (previous)
-      if ($halaman > 1) {
-        $prev = $halaman - 1;
-        echo "<span class=prevnext><a href=$_SERVER[PHP_SELF]?halaman=$prev><font face=Verdana color=black size=1><< Prev</font></a></span> ";
-      } else {
-        echo "<span class=disabled><font face=Verdana color=black size=1><< Prev</font></span> ";
-      }
-      // Tampilkan link halaman 1,2,3 ...
-      for ($i = 1; $i <= $jmlhal; $i++)
-        if ($i != $halaman) {
-          echo " <a href=$_SERVER[PHP_SELF]?halaman=$i><font face=Verdana color=black size=1>$i</font></a> ";
-        } else {
-          echo " <span class=current><font face=Verdana color=black size=1>$i</font></span> ";
-        }
-      // Link kehalaman berikutnya (Next)
-      if ($halaman < $jmlhal) {
-        $next = $halaman + 1;
-        echo "<span class=prevnext><a href=$_SERVER[PHP_SELF]?halaman=$next><font face=Verdana color=black size=1>Next >></font></a></span>";
-      } else {
-        echo "<span class=disabled><font face=Verdana color=black size=1>Next >></font></span>";
-      }
-      echo "</div>";
-      echo "<p align=center><font face=Verdana color=black size=1><b>$jmldata</b> data</font></p>";
-      mysqli_close($con);
-      echo "</td></tr>";
-    }
-    ?>
-</div>
 <?php
-    include("footer.php");
+//cek otoritas
+$q = "SELECT * FROM tw_hak_akses where tabel='mahasiswa' and user = '". $_SESSION['Email'] ."' and listData='1'";
+$r = mysqli_query($con, $q);
+if ( $obj = @mysqli_fetch_object($r) )
+ {
 ?>
 <?php
-  } else {
-    //header("Location:content.php");
+echo "<br><h4>Master Data Mahasiswa</h4><br>";
+
+//cari tabel
+echo "<div class='row'>";
+echo "<div class='col-md-6 mb-20'>";
+echo "<a href='insertmahasiswa.php'><button type='button' class='btn btn-light'><font face=Verdana color=black size=2><i class='fa fa-plus'></i>&nbsp;Tambah</font></button></a>";
+echo "&nbsp;&nbsp;<a href='printmahasiswa.php' target=_blank><button type='button' class='btn btn-light'><font face=Verdana color=black size=2><i class='fa fa-print'></i>&nbsp;Print</font></button></a>";
+echo "</div>";
+
+echo "<div class='col-md-6 text-right mb-20'>";
+echo "<form action=listmahasiswa.php method=post class='form-inline'>";
+echo "<div class='form-group'>";
+echo "<select class='form-control' name=select>";
+$menu=mysqli_query($con, "show columns from mahasiswa");
+while($rowmenu = mysqli_fetch_array($menu)){
+    echo "<option value=". $rowmenu['Field'] .">". $rowmenu['Field']."</option>";
+}
+echo "    </select>";
+echo "</div>";
+echo "<div class='form-group'>";
+echo "<input type=text  class='form-control' name=cari>";
+echo "</div>";
+echo "<button type='submit' class='btn btn-success'><i class='fa fa-search-plus'></i>Search</button>";
+echo "</form>";
+echo "</div>";
+echo "</div>";
+
+if(isset($_POST["cari"])){ $cari = mysqli_real_escape_string($con, $_POST["cari"]); }
+if (isset($_POST["cari"]) && ($_POST["cari"] != "")){
+//hasil pencarian tabel
+$dd = "SELECT * FROM mahasiswa where ". $_POST["select"]." like '%" . $cari . "%'";
+$resultcari = mysqli_query($con, $dd);
+if ( $obj = mysqli_fetch_object($resultcari) )
+{
+$result = mysqli_query($con, $dd);
+echo "<font color=black size=2>Hasil Pencarian</font>"; 
+echo "<table class='custom-table mt-10'>"; 
+echo "<tr bgcolor=4ba6ef>
+<th><font color=black size=2 >NIM</font></th>
+<th><font color=black size=2 >Nama</font></th>
+<th><font color=black size=2 >Program Studi</font></th>
+<th class='align-middle'><font color=black size=2  >Foto</font></th>
+<th class='align-middle'><font color=black size=2  >Aksi</font></th>
+</tr>";
+$warna = 0;
+while($row = mysqli_fetch_array($result))
+  {
+  if ($warna == 0){
+  	echo "<tr bgcolor=FFFFFF onMouseOver=\"this.bgColor='#D3DCE3';\" onMouseOut=\"this.bgColor='FFFFFF';\">";
+	$warna = 1;
+  }else{
+  	echo "<tr bgcolor=FFFFFF onMouseOver=\"this.bgColor='#D3DCE3';\" onMouseOut=\"this.bgColor='FFFFFF';\">";
+	$warna = 0;
+  }  
+  echo "<td><font face=Verdana color=black size=2>" . $row['NIM'] . "</font></td>";
+  echo "<td><font face=Verdana color=black size=2>" . $row['Nama'] . "</font></td>";
+  echo "<td><font face=Verdana color=black size=2>" . $row['Program_Studi'] . "<br>";
+  $l = mysqli_query($con, "select Program_Studi from program_studi where Kode = '". $row['Program_Studi'] ."'"); 
+  while($rl = mysqli_fetch_array($l)){  
+    echo $rl[0];    
+  } 
+  echo "</font></td>";
+  echo "<td class='align-middle'><font face=Verdana color=black size=1><a href='images/" . $row['Foto'] . "' target=_blank><img src='images/" . $row['Foto'] . "' width=50 height=50 data-toggle='tooltip' data-placement='top' title='Lihat foto'></a></font></td>";
+  echo "<td class='align-middle'><a class=linklist href=viewmahasiswa.php?NIM=".$row['NIM']."><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
+  echo "<a class=linklist href=editmahasiswa.php?NIM=".$row['NIM']."><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit data'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
+  echo "<a class=linklist href=deletemahasiswa.php?NIM=".$row['NIM']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
+  echo "</tr>";
   }
+echo "</table><br><br>";
+} else {
+	echo "<font size=2 face=Verdana color=#FF0000>Data mahasiswa not found - try again!</font><br><br>";
+}
+}
+if((!isset($_POST["cari"])) or ($_POST["cari"] == "")){
+// Langkah 1: Tentukan batas,cek halaman & posisi data
+$batas   = 100;
+if(isset($_GET["halaman"])){ $halaman = $_GET['halaman']; }
+if(empty($halaman)){
+	$posisi  = 0;
+	$halaman = 1;
+}
+else{
+	$posisi = ($halaman-1) * $batas;
+}
+$result = mysqli_query($con, "SELECT * FROM mahasiswa LIMIT $posisi,$batas");
+
+echo "<table class='custom-table'>"; 
+$firstColumn = 1;
+$warna = 0;
+while($row = mysqli_fetch_array($result))
+  {
+  if ($firstColumn == 1) {
+echo "<tr bgcolor=4ba6ef>
+<th><font color=black size=2 >NIM</font></th>
+<th><font color=black size=2 >Nama</font></th>
+<th><font color=black size=2 >Program Studi</font></th>
+<th class='align-middle'><font color=black size=2  >Foto</font></th>
+<th class='align-middle'><font color=black size=2  >Aksi</font></th>
+</tr>";
+$firstColumn = 0;
+  }
+  if ($warna == 0){
+  	echo "<tr bgcolor=FFFFFF onMouseOver=\"this.bgColor='#D3DCE3';\" onMouseOut=\"this.bgColor='FFFFFF';\">";
+	$warna = 1;
+  }else{
+  	echo "<tr bgcolor=FFFFFF onMouseOver=\"this.bgColor='#D3DCE3';\" onMouseOut=\"this.bgColor='FFFFFF';\">";
+	$warna = 0;
+  }  
+  echo "<td><font face=Verdana color=black size=2>" . $row['NIM'] . "</font></td>";
+  echo "<td><font face=Verdana color=black size=2>" . $row['Nama'] . "</font></td>";
+  echo "<td><font face=Verdana color=black size=2>" . $row['Program_Studi'] . "<br>";
+  $l = mysqli_query($con, "select Program_Studi from program_studi where Kode = '". $row['Program_Studi'] ."'"); 
+  while($rl = mysqli_fetch_array($l)){  
+    echo $rl[0];    
+  } 
+  echo "</font></td>";
+  echo "<td class='align-middle'><font face=Verdana color=black size=1><a href='images/" . $row['Foto'] . "' target=_blank><img src='images/" . $row['Foto'] . "' width=50 height=50 data-toggle='tooltip' data-placement='top' title='Lihat foto'></a></font></td>";
+  echo "<td class='align-middle'><a class=linklist href=viewmahasiswa.php?NIM=".$row['NIM']."><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
+  echo "<a class=linklist href=editmahasiswa.php?NIM=".$row['NIM']."><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit data'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
+  echo "<a class=linklist href=deletemahasiswa.php?NIM=".$row['NIM']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
+  echo "</tr>";
+  }
+echo "</table><br>";
+
+//Langkah 3: Hitung total data dan halaman
+$tampil2 = mysqli_query($con, "SELECT * FROM mahasiswa");
+$jmldata = mysqli_num_rows($tampil2);
+$jmlhal  = ceil($jmldata/$batas);
+echo "<div class='text-center'>";
+echo "<ul class='pagination'>";
+// Link ke halaman sebelumnya (previous)
+if($halaman > 1){
+	$prev=$halaman-1;
+	echo "<li><a href='$_SERVER[PHP_SELF]?halaman=$prev'>&laquo; Prev</a></li>";
+}
+else{
+	echo "<li class='disabled'><span>&laquo; Prev</span></li>";
+}
+// Tampilkan link halaman 1,2,3 ...
+for($i=1;$i<=$jmlhal;$i++)
+if ($i != $halaman){
+	echo "<li><a href='$_SERVER[PHP_SELF]?halaman=$i'>$i</a></li>";
+}
+else{
+	echo "<li class='active'><span>$i</span></li>";
+}
+// Link kehalaman berikutnya (Next)
+if($halaman < $jmlhal){
+	$next=$halaman+1;
+	echo "<li><a href='$_SERVER[PHP_SELF]?halaman=$next'>Next &raquo;</a></li>";
+}
+else{
+	echo "<li class='disabled'><span>Next &raquo;</span></li>";
+}
+echo "</ul>";
+echo "</div>";
+
+echo "<div class='text-center'>";
+echo "<p>Total <b>$jmldata</b> data</p>";
+echo "</div>";
+mysqli_close($con);
+echo "</td></tr>";
+}
+ ?>   
+ </div> 
+ <?php 
+include("footer.php");
+?>
+<?php
+} else {
+ //header("Location:content.php");
+}
 ?>
