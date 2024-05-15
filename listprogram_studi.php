@@ -79,9 +79,9 @@ while($row = mysqli_fetch_array($result))
   echo "<td><font face=Verdana color=black size=2>" . $row['Program_Studi'] . "</font></td>";
   echo "<td><font face=Verdana color=black size=2>" . $row['Kaprodi'] . "</font></td>";
   echo "<td><font face=Verdana color=black size=2>" . $row['NIDN_Kaprodi'] . "</font></td>";
-  echo "<td class='align-middle'><a class=linklist href=viewprogram_studi.php?Kode=".$row['Kode']."><button type='button' class='btn btn-warning'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
-  echo "<a class=linklist href=editprogram_studi.php?Kode=".$row['Kode']."><button type='button' class='btn btn-primary'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
-  echo "<a class=linklist href=deleteprogram_studi.php?Kode=".$row['Kode']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
+  echo "<td class='align-middle'><a class=linklist href=viewprogram_studi.php?Kode=".$row['Kode']."><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
+  echo "<a class=linklist href=editprogram_studi.php?Kode=".$row['Kode']."><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit data'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
+  echo "<a class=linklist href=deleteprogram_studi.php?Kode=".$row['Kode']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
   echo "</tr>";
   }
 echo "</table><br><br>";
@@ -120,19 +120,19 @@ echo "<tr bgcolor=4ba6ef>
 $firstColumn = 0;
   }
   if ($warna == 0){
-  	echo "<tr bgcolor=FFFFFF onMouseOver=\"this.bgColor='#4ba6ef';\" onMouseOut=\"this.bgColor='FFFFFF';\">";
+  	echo "<tr bgcolor=FFFFFF onMouseOver=\"this.bgColor='#D3DCE3';\" onMouseOut=\"this.bgColor='FFFFFF';\">";
 	$warna = 1;
   }else{
-  	echo "<tr bgcolor=FFFFFF onMouseOver=\"this.bgColor='#4ba6ef';\" onMouseOut=\"this.bgColor='FFFFFF';\">";
+  	echo "<tr bgcolor=FFFFFF onMouseOver=\"this.bgColor='#D3DCE3';\" onMouseOut=\"this.bgColor='FFFFFF';\">";
 	$warna = 0;
   }
   echo "<td><font face=Verdana color=black size=2>" . $row['Kode'] . "</font></td>";
   echo "<td><font face=Verdana color=black size=2>" . $row['Program_Studi'] . "</font></td>";
   echo "<td><font face=Verdana color=black size=2>" . $row['Kaprodi'] . "</font></td>";
   echo "<td><font face=Verdana color=black size=2>" . $row['NIDN_Kaprodi'] . "</font></td>";
-  echo "<td class='align-middle'><a class=linklist href=viewprogram_studi.php?Kode=".$row['Kode']."><button type='button' class='btn btn-warning'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
-  echo "<a class=linklist href=editprogram_studi.php?Kode=".$row['Kode']."><button type='button' class='btn btn-primary'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
-  echo "<a class=linklist href=deleteprogram_studi.php?Kode=".$row['Kode']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
+  echo "<td class='align-middle'><a class=linklist href=viewprogram_studi.php?Kode=".$row['Kode']."><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
+  echo "<a class=linklist href=editprogram_studi.php?Kode=".$row['Kode']."><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit data'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
+  echo "<a class=linklist href=deleteprogram_studi.php?Kode=".$row['Kode']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
   echo "</tr>";
   }
 echo "</table><br>";
