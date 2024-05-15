@@ -18,14 +18,11 @@ if ( $obj = @mysqli_fetch_object($r) )
  {
 ?>
 <?php
-echo "<td bgcolor=F5F5F5>";
-?>
-<?php
 echo "<br><h4>Setting Akses User</h4><br>";
 
 echo "<div class='row'>";
 echo "<div class='col-md-6 mb-20'>";
-echo "<a href='insertmastertw_tabeltw_hak_akses.php'><button type='button' class='btn btn-light'><font face=Verdana color=black size=1><i class='fa fa-plus'></i>&nbsp;Tambah</font></button></a><br>";
+echo "<a href='insertmastertw_tabeltw_hak_akses.php'><button type='button' class='btn btn-light'><font face=Verdana color=black size=2><i class='fa fa-plus'></i>&nbsp;Tambah</font></button></a><br>";
 echo "</div>";
 
 //cari tabel
@@ -58,10 +55,9 @@ $result = mysqli_query($con, $dd);
 echo "<font color=black size=2>Hasil Pencarian</font>";
 echo "<div class='table-responsive'> "; 
 echo "<table class='custom-table mt-10'>"; 
-echo "<tr bgcolor=4ba6ef>
-<th>Tabel</th>
-<th class='align-middle'>Aksi</th>
-<th class='align-middle'>Hak Akses</th>
+echo "<tr bgcolor=337ab7>
+<th><font color=white size=2>Menu</font></th>
+<th class='align-middle'><font color=white size=2>Aksi</font></th>
 </tr>";
 $warna = 0;
 while($row = mysqli_fetch_array($result))
@@ -76,8 +72,8 @@ while($row = mysqli_fetch_array($result))
   echo "<td><font face=Verdana color=black size=2>" . $row['tabel'] . "</font></td>";
   echo "<td class='align-middle'><a class=linklist href=viewmastertw_tabeltw_hak_akses.php?tabel=".$row['tabel']."><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
   echo "<a class=linklist href=editmastertw_tabeltw_hak_akses.php?tabel=".$row['tabel']."><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit data'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
-  echo "<a class=linklist href=deletemastertw_tabeltw_hak_akses.php?tabel=".$row['tabel']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
-  echo "<td class='align-middle'><a class=linklist href=listmastertw_tabeltw_hak_aksesdetail.php?tabel=".$row['tabel']."><button type='button' class='btn btn-success'><font face=Verdana color=white size=1>Lihat</font></a></td>";
+  echo "<a class=linklist href=deletemastertw_tabeltw_hak_akses.php?tabel=".$row['tabel']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a>";
+  echo "<a class=linklist href=listmastertw_tabeltw_hak_aksesdetail.php?tabel=".$row['tabel']."><button type='button' class='btn btn-success'><font face=Verdana color=white size=1>Kelola Akses</font></a></td>";
   echo "</tr>";
   }
 echo "</table><br><br>";
@@ -88,7 +84,7 @@ echo "</div>";
 }
 if((!isset($_POST["cari"])) or ($_POST["cari"] == "")){
 // Langkah 1: Tentukan batas,cek halaman & posisi data
-$batas   = 100;
+$batas   = 10;
 if(isset($_GET["halaman"])){ $halaman = $_GET['halaman'];}
 if(empty($halaman)){
 	$posisi  = 0;
@@ -106,10 +102,9 @@ $warna = 0;
 while($row = mysqli_fetch_array($result))
   {
   if ($firstColumn == 1) {
-  echo "<tr bgcolor=4ba6ef>
-  <th>Tabel</th>
-  <th class='align-middle'>Aksi</th>
-  <th class='align-middle'>Hak Akses</th>
+  echo "<tr bgcolor=337ab7>
+  <th><font color=white size=2>Menu</font></th>
+  <th class='align-middle'><font color=white size=2>Aksi</font></th>
   </tr>";
 $firstColumn = 0;
   }
@@ -123,8 +118,8 @@ $firstColumn = 0;
   echo "<td><font face=Verdana color=black size=2>" . $row['tabel'] . "</font></td>";
   echo "<td class='align-middle'><a class=linklist href=viewmastertw_tabeltw_hak_akses.php?tabel=".$row['tabel']."><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
   echo "<a class=linklist href=editmastertw_tabeltw_hak_akses.php?tabel=".$row['tabel']."><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit data'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
-  echo "<a class=linklist href=deletemastertw_tabeltw_hak_akses.php?tabel=".$row['tabel']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
-  echo "<td class='align-middle'><a class=linklist href=listmastertw_tabeltw_hak_aksesdetail.php?tabel=".$row['tabel']."><button type='button' class='btn btn-success'><font face=Verdana color=white size=1>Lihat</font></a></td>";
+  echo "<a class=linklist href=deletemastertw_tabeltw_hak_akses.php?tabel=".$row['tabel']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a>";
+  echo "<a class=linklist href=listmastertw_tabeltw_hak_aksesdetail.php?tabel=".$row['tabel']."><button type='button' class='btn btn-success'><font face=Verdana color=white size=1>Kelola Akses</font></a></td>";
   echo "</tr>";
   }
 echo "</table><br>";

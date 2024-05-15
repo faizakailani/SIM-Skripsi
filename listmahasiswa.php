@@ -55,12 +55,12 @@ if ( $obj = mysqli_fetch_object($resultcari) )
 $result = mysqli_query($con, $dd);
 echo "<font color=black size=2>Hasil Pencarian</font>"; 
 echo "<table class='custom-table mt-10'>"; 
-echo "<tr bgcolor=4ba6ef>
-<th><font color=black size=2 >NIM</font></th>
-<th><font color=black size=2 >Nama</font></th>
-<th><font color=black size=2 >Program Studi</font></th>
-<th class='align-middle'><font color=black size=2  >Foto</font></th>
-<th class='align-middle'><font color=black size=2  >Aksi</font></th>
+echo "<tr bgcolor=337ab7>
+<th><font color=white size=2 >NIM</font></th>
+<th><font color=white size=2 >Nama</font></th>
+<th><font color=white size=2 >Program Studi</font></th>
+<th class='align-middle'><font color=white size=2  >Foto</font></th>
+<th class='align-middle'><font color=white size=2  >Aksi</font></th>
 </tr>";
 $warna = 0;
 while($row = mysqli_fetch_array($result))
@@ -110,12 +110,12 @@ $warna = 0;
 while($row = mysqli_fetch_array($result))
   {
   if ($firstColumn == 1) {
-echo "<tr bgcolor=4ba6ef>
-<th><font color=black size=2 >NIM</font></th>
-<th><font color=black size=2 >Nama</font></th>
-<th><font color=black size=2 >Program Studi</font></th>
-<th class='align-middle'><font color=black size=2  >Foto</font></th>
-<th class='align-middle'><font color=black size=2  >Aksi</font></th>
+echo "<tr bgcolor=337ab7>
+<th><font color=white size=2 >NIM</font></th>
+<th><font color=white size=2 >Nama</font></th>
+<th><font color=white size=2 >Program Studi</font></th>
+<th class='align-middle'><font color=white size=2  >Foto</font></th>
+<th class='align-middle'><font color=white size=2  >Aksi</font></th>
 </tr>";
 $firstColumn = 0;
   }

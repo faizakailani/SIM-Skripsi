@@ -58,11 +58,11 @@ $result = mysqli_query($con, $dd);
 echo "<font color=black size=2>Hasil Pencarian</font>";
 echo "<div class='table-responsive'> "; 
 echo "<table class='custom-table mt-10'>"; 
-echo "<tr bgcolor=4ba6ef>
-<th><font color=black size=2>NIDN</font></th>
-<th><font color=black size=2>Nama</font></th>
-<th class='align-middle'><font color=black size=2>Foto</font></th>
-<th class='align-middle' style='width: 200px;'><font color=black size=2>Aksi</font></th>
+echo "<tr bgcolor=337ab7>
+<th><font color=white size=2>NIDN</font></th>
+<th><font color=white size=2>Nama</font></th>
+<th class='align-middle'><font color=white size=2>Foto</font></th>
+<th class='align-middle' style='width: 200px;'><font color=white size=2>Aksi</font></th>
 </tr>";
 $warna = 0;
 while($row = mysqli_fetch_array($result))
@@ -114,11 +114,11 @@ $warna = 0;
 while($row = mysqli_fetch_array($result))
   {
   if ($firstColumn == 1) {
-echo "<tr bgcolor=4ba6ef>
-<th><font color=black size=2>NIDN</font></th>
-<th><font color=black size=2>Nama</font></th>
-<th class='align-middle'><font color=black size=2>Foto</font></th>
-<th class='align-middle' style='width: 200px;'><font color=black size=2>Aksi</font></th>
+echo "<tr bgcolor=337ab7>
+<th><font color=white size=2>NIDN</font></th>
+<th><font color=white size=2>Nama</font></th>
+<th class='align-middle'><font color=white size=2>Foto</font></th>
+<th class='align-middle' style='width: 200px;'><font color=white size=2>Aksi</font></th>
 </tr>";
 $firstColumn = 0;
   }

@@ -25,7 +25,7 @@ echo "<br><h4>Setting User</h4><br>";
 
 echo "<div class='row'>";
 echo "<div class='col-md-6 mb-20'>";
-echo "<a href=insertuser.php><button type='button' class='btn btn-light'><font face=Verdana color=black size=1><i class='fa fa-plus'></i>&nbsp;Insert</font></button></a><br>";
+echo "<a href=insertuser.php><button type='button' class='btn btn-light'><font face=Verdana color=black size=2><i class='fa fa-plus'></i>&nbsp;Tambah</font></button></a><br>";
 echo "</div>";
 //cari tabel
 echo "<div class='col-md-6 mb-20 text-right'>";
@@ -60,11 +60,11 @@ $result = mysqli_query($con, $dd);
 echo "<font face=Verdana color=black size=1>user </font>";
 echo "<div class='table-responsive'> "; 
 echo "<table class='custom-table mt-10'>"; 
-echo "<tr bgcolor=4ba6ef>
-<th><font color=black size=2>Email</font></th>
-<th><font color=black size=2>Password</font></th>
-<th><font color=black size=2>Active</font></th>
-<th class='align-middle'><font color=black size=2>Aksi</font></th>
+echo "<tr bgcolor=337ab7>
+<th><font color=white size=2>Email</font></th>
+<th><font color=white size=2>Password</font></th>
+<th><font color=white size=2>Active</font></th>
+<th class='align-middle'><font color=white size=2>Aksi</font></th>
 </tr>";
 $warna = 0;
 while($row = mysqli_fetch_array($result))
@@ -103,7 +103,7 @@ else{
 	$posisi = ($halaman-1) * $batas;
 }
 $result = mysqli_query($con, "SELECT * FROM user LIMIT $posisi,$batas");
-echo "<font face=Verdana color=black size=1>user</font>";
+
 echo "<div class='table-responsive'> "; 
 echo "<table class='custom-table'>";
 $firstColumn = 1;
@@ -111,11 +111,11 @@ $warna = 0;
 while($row = mysqli_fetch_array($result))
   {
   if ($firstColumn == 1) {
-echo "<tr bgcolor=4ba6ef>
-<th><font color=black size=2>Email</font></th>
-<th><font color=black size=2>Password</font></th>
-<th><font color=black size=2>Active</font></th>
-<th class='align-middle'><font color=black size=2>Aksi</font></th>
+echo "<tr bgcolor=337ab7>
+<th><font color=white size=2>Email</font></th>
+<th><font color=white size=2>Password</font></th>
+<th><font color=white size=2>Active</font></th>
+<th class='align-middle'><font color=white size=2>Aksi</font></th>
 </tr>";
 $firstColumn = 0;
   }

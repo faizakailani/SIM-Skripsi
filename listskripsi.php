@@ -22,8 +22,8 @@ echo "<br><h4>Master Data Skiripsi</h4><br>";
 
 echo "<div class='row'>";
 echo "<div class='col-md-6 mb-20'>";
-echo "<a href=insertskripsi.php><button type='button' class='btn btn-light'><font face=Verdana color=black size=1><i class='fa fa-plus'></i>&nbsp;Insert</font></button></a>";
-echo "&nbsp;&nbsp;<a href='printskripsi.php' target=_blank><button type='button' class='btn btn-light'><font face=Verdana color=black size=1><i class='fa fa-print'></i>&nbsp;Print</font></button></a>";
+echo "<a href=insertskripsi.php><button type='button' class='btn btn-light'><font face=Verdana color=black size=2><i class='fa fa-plus'></i>&nbsp;Insert</font></button></a>";
+echo "&nbsp;&nbsp;<a href='printskripsi.php' target=_blank><button type='button' class='btn btn-light'><font face=Verdana color=black size=2><i class='fa fa-print'></i>&nbsp;Print</font></button></a>";
 echo "</div>";
 
 //cari tabel
@@ -55,20 +55,20 @@ $result = mysqli_query($con, $dd);
 echo "<font color=black size=2>Hasil Pencarian</font>";
 echo "<div class='table-responsive'> "; 
 echo "<table class='custom-table mt-10'>"; 
-echo "<tr bgcolor=4ba6ef>
-<th><font color=black size=2>id</font></th>
-<th><font color=black size=2>NIM</font></th>
-<th><font color=black size=2>Pembimbing</font></th>
-<th><font color=black size=2>Penguji1</font></th>
-<th><font color=black size=2>Penguji2</font></th>
-<th><font color=black size=2>Tanggal Daftar</font></th>
-<th><font color=black size=2>Tanggal Sidang</font></th>
-<th><font color=black size=2>Ruang Sidang</font></th>
-<th><font color=black size=2>Nilai Pembimbing</font></th>
-<th><font color=black size=2>Nilai Penguji1</font></th>
-<th><font color=black size=2>Nilai Penguji2</font></th>
-<th><font color=black size=2>Nilai Akhir</font></th>
-<th><font color=black size=2>Keterangan</font></th>
+echo "<tr bgcolor=337ab7>
+<th><font color=white size=2>id</font></th>
+<th><font color=white size=2>NIM</font></th>
+<th><font color=white size=2>Pembimbing</font></th>
+<th><font color=white size=2>Penguji1</font></th>
+<th><font color=white size=2>Penguji2</font></th>
+<th><font color=white size=2>Tanggal Daftar</font></th>
+<th><font color=white size=2>Tanggal Sidang</font></th>
+<th><font color=white size=2>Ruang Sidang</font></th>
+<th><font color=white size=2>Nilai Pembimbing</font></th>
+<th><font color=white size=2>Nilai Penguji1</font></th>
+<th><font color=white size=2>Nilai Penguji2</font></th>
+<th><font color=white size=2>Nilai Akhir</font></th>
+<th><font color=white size=2>Keterangan</font></th>
 <th 'align-middle'><font color=black size=2>Aksi</font></th>
 </tr>";
 $warna = 0;
@@ -144,21 +144,21 @@ $warna = 0;
 while($row = mysqli_fetch_array($result))
   {
   if ($firstColumn == 1) {
-echo "<tr bgcolor=4ba6ef>
-<th><font color=black size=2>id</font></th>
-<th><font color=black size=2>NIM</font></th>
-<th><font color=black size=2>Pembimbing</font></th>
-<th><font color=black size=2>Penguji1</font></th>
-<th><font color=black size=2>Penguji2</font></th>
-<th><font color=black size=2>Tanggal Daftar</font></th>
-<th><font color=black size=2>Tanggal Sidang</font></th>
-<th><font color=black size=2>Ruang Sidang</font></th>
-<th><font color=black size=2>Nilai Pembimbing</font></th>
-<th><font color=black size=2>Nilai Penguji1</font></th>
-<th><font color=black size=2>Nilai Penguji2</font></th>
-<th><font color=black size=2>Nilai Akhir</font></th>
-<th><font color=black size=2>Keterangan</font></th>
-<th class='align-middle'><font color=black size=2>Aksi</font></th>
+echo "<tr bgcolor=337ab7>
+<th><font color=white size=2>id</font></th>
+<th><font color=white size=2>NIM</font></th>
+<th><font color=white size=2>Pembimbing</font></th>
+<th><font color=white size=2>Penguji1</font></th>
+<th><font color=white size=2>Penguji2</font></th>
+<th><font color=white size=2>Tanggal Daftar</font></th>
+<th><font color=white size=2>Tanggal Sidang</font></th>
+<th><font color=white size=2>Ruang Sidang</font></th>
+<th><font color=white size=2>Nilai Pembimbing</font></th>
+<th><font color=white size=2>Nilai Penguji1</font></th>
+<th><font color=white size=2>Nilai Penguji2</font></th>
+<th><font color=white size=2>Nilai Akhir</font></th>
+<th><font color=white size=2>Keterangan</font></th>
+<th class='align-middle'><font color=white size=2>Aksi</font></th>
 </tr>";
 $firstColumn = 0;
   }
