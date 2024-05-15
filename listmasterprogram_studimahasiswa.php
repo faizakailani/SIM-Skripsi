@@ -73,10 +73,10 @@ echo "<td><font face=Verdana color=black size=2>" . $row['Program_Studi'] . "</f
 echo "<td><font face=Verdana color=black size=2>" . $row['Kaprodi'] . "</font></td>";
 echo "<td><font face=Verdana color=black size=2>" . $row['NIDN_Kaprodi'] . "</font></td>";
 
-echo "<td class='align-middle'><a class=linklist href=viewmasterprogram_studimahasiswa.php?Kode=" . $row['Kode'] . "><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
-echo "<a class=linklist href=editmasterprogram_studimahasiswa.php?Kode=" . $row['Kode'] . "><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit data'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
+echo "<td class='align-middle'><a class=linklist href=editmasterprogram_studimahasiswa.php?Kode=" . $row['Kode'] . "><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit data'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
 echo "<a class=linklist href=deletemasterprogram_studimahasiswa.php?Kode=" . $row['Kode'] . " onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a>";
-echo "<a class=linklist href=listmasterprogram_studimahasiswadetail.php?Kode=" . $row['Kode'] . "><button type='button' class='btn btn-success'><font face=Verdana color=white size=1>Kelola Mahasiswa</font></a></td>";
+echo "<a class=linklist href=listmasterprogram_studimahasiswadetail.php?Kode=" . $row['Kode'] . "><button type='button' class='btn btn-success'><font face=Verdana color=white size=1>Kelola Mahasiswa</font></a>";
+echo "<a class=linklist href=viewmasterprogram_studimahasiswa.php?Kode=" . $row['Kode'] . "><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a></td>";
 echo "</tr>";
 }
 echo "</table><br><br>";
@@ -125,10 +125,10 @@ echo "<td><font face=Verdana color=black size=2>" . $row['Program_Studi'] . "</f
 echo "<td><font face=Verdana color=black size=2>" . $row['Kaprodi'] . "</font></td>";
 echo "<td><font face=Verdana color=black size=2>" . $row['NIDN_Kaprodi'] . "</font></td>";
 
-echo "<td class='align-middle'><a class=linklist href=viewmasterprogram_studimahasiswa.php?Kode=" . $row['Kode'] . "><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
+echo "<td class='align-middle'><a class=linklist href=listmasterprogram_studimahasiswadetail.php?Kode=" . $row['Kode'] . "><button type='button' class='btn btn-success'><font face=Verdana color=white size=1>Kelola Mahasiswa</font></button></a>";
 echo "<a class=linklist href=editmasterprogram_studimahasiswa.php?Kode=" . $row['Kode'] . "><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit data'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
 echo "<a class=linklist href=deletemasterprogram_studimahasiswa.php?Kode=" . $row['Kode'] . " onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a>";
-echo "<a class=linklist href=listmasterprogram_studimahasiswadetail.php?Kode=" . $row['Kode'] . "><button type='button' class='btn btn-success'><font face=Verdana color=white size=1>Kelola Mahasiswa</font></a></td>";
+echo "<a class=linklist href=viewmasterprogram_studimahasiswa.php?Kode=" . $row['Kode'] . "><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a></td>";
 echo "</tr>";
 }
 echo "</table><br>";
