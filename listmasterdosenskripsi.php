@@ -17,7 +17,7 @@ $r = mysqli_query($con, $q);
 if ($obj = @mysqli_fetch_object($r)) {
 ?>
 <?php
-echo "<br><h4>Skripsi/Dosen</h4><br>";
+echo "<br><h4>Skripsi/Dosen</h4>";
 
 echo "<div class='row'>";
 echo "<div class='col-md-6 mb-20'>";
@@ -116,10 +116,10 @@ $warna = 1;
 echo "<tr bgcolor=FFFFFF onMouseOver=\"this.bgColor='#D3DCE3';\" onMouseOut=\"this.bgColor='FFFFFF';\">";
 $warna = 0;
 }
-echo "<td><font face=Verdana color=black size=1>" . $row['NIDN'] . "</font></td>";
-echo "<td><font face=Verdana color=black size=1>" . $row['Nama'] . "</font></td>";
-echo "<td class='align-middle'><font face=Verdana color=black size=1><a href='images/" . $row['Foto'] . "' target=_blank><img src='images/" . $row['Foto'] . "' width=50 height=50 data-toggle='tooltip' data-placement='top' title='Lihat foto'></a></font></td>";
-echo "<td class='align-middle'><a class=linklist href=listmasterdosenskripsidetail.php?NIDN=" . $row['NIDN'] . "><button type='button' class='btn btn-success'><font face=Verdana color=white size=1>Kelola Skripsi</font></button></a>";
+echo "<td><font face=Verdana color=black size=2>" . $row['NIDN'] . "</font></td>";
+echo "<td><font face=Verdana color=black size=2>" . $row['Nama'] . "</font></td>";
+echo "<td class='align-middle'><font face=Verdana color=black size=2><a href='images/" . $row['Foto'] . "' target=_blank><img src='images/" . $row['Foto'] . "' width=50 height=50 data-toggle='tooltip' data-placement='top' title='Lihat foto'></a></font></td>";
+echo "<td class='align-middle'><a class=linklist href=listmasterdosenskripsidetail.php?NIDN=" . $row['NIDN'] . "><button type='button' class='btn btn-success'><font face=Verdana color=white size=2>Kelola Skripsi</font></button></a>";
 echo "<a class=linklist href=viewmasterdosenskripsi.php?NIDN=" . $row['NIDN'] . "><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
 echo "<a class=linklist href=editmasterdosenskripsi.php?NIDN=" . $row['NIDN'] . "><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit data'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
 echo "<a class=linklist href=deletemasterdosenskripsi.php?NIDN=" . $row['NIDN'] . " onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
