@@ -1,38 +1,55 @@
 <?php
 session_start();
-if(!isset($_SESSION["Email"])){
-header("location:index.php");
+if (!isset($_SESSION["Email"])) {
+    header("location:index.php");
 }
 ?>
-<?php     
-include("db.php");  
-include("header.php"); 
-include("menu.php"); 
-?>      
-<div id="page-wrapper">
 <?php
-//cek otoritas
-$q = "SELECT * FROM tw_hak_akses where tabel='Manage_User_Access' and user = '". $_SESSION['Email'] ."' and viewData='1'";
-$r = mysqli_query($con, $q);
-if ( $obj = @mysqli_fetch_object($r) )
- {
+include("db.php");
+include("header.php");
+include("menu.php");
+?>
+<div id="page-wrapper" style="padding-top: 2rem;">
+    <?php
+    //cek otoritas
+    $q = "SELECT * FROM tw_hak_akses where tabel='Manage_User_Access' and user = '" . $_SESSION['Email'] . "' and viewData='1'";
+    $r = mysqli_query($con, $q);
+    if ($obj = @mysqli_fetch_object($r)) {
+    ?>
+        <?php
+        ?>
+        <link href="standar.css" rel="stylesheet" type="text/css">
+
+        <div class="panel panel-primary">
+            <div class=" panel-heading">
+                <h3 class="panel-title">View TW Table</h3>
+            </div>
+            <div class="panel-body">
+                <div class="border border-dark">
+                    <form>
+                        <?php
+                        $result = mysqli_query($con, "SELECT * FROM tw_tabel where tabel = '" . $_GET['tabel'] . "'");
+                        while ($row = mysqli_fetch_array($result)) {
+                        ?>
+                            <input type="hidden" name="pk" value="<?php echo $row['tabel'] ?>">
+                            <div style="margin-bottom: 2rem;">
+                                <label for="tabel" class="form-label">Tabel</label>
+                                <input type="text" class="form-control" name="tabel" id="tabel" value="<?php echo $row['tabel'] ?>" aria-describedby="emailHelp" required readonly>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                        <a href=listmastertw_tabeltw_hak_akses.php><button type="button" class="btn btn-warning">Back</button></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+<?php
+        include("footer.php");
 ?>
 <?php
-echo "<td bgcolor=F5F5F5>";
-echo "<table class='table table-striped'>";
-echo "<tr><td colspan=2><font face=Verdana color=black size=1>tw_tabel</font></td></tr>";
-$result = mysqli_query($con, "SELECT * FROM tw_tabel where tabel = '". $_GET['tabel'] . "'");
-while($row = mysqli_fetch_array($result))
-{
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>tabel</font></td>";
-echo "<td bgcolor=CCEEEE><font face=Verdana color=black size=1>" . $row['tabel'] . "</font></td>";
-echo "<tr><td colspan=2 align=center><a href=listmastertw_tabeltw_hak_akses.php><button type='button' class='btn btn-warning'><font face=Verdana size=1><i class='fa fa-check'></i>&nbsp;Back</font></button></a></td></tr>";
-echo "</table></td></tr>";
-}
-include("footer.php");
-?>
-<?php
-} else {
- //header("Location:content.php");
-}
+    } else {
+        //header("Location:content.php");
+    }
 ?>

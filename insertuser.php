@@ -1,47 +1,60 @@
 <?php
 session_start();
-if(!isset($_SESSION["Email"])){
-header("location:index.php");
+if (!isset($_SESSION["Email"])) {
+    header("location:index.php");
 }
 ?>
- <?php   
+<?php
 include("db.php");
-include("header.php");   
-include("menu.php");  
-?>   
-<div id="page-wrapper">  
+include("header.php");
+include("menu.php");
+?>
+<div id="page-wrapper" style="padding-top: 2rem;">
+    <?php
+    //cek otoritas
+    $q = "SELECT * FROM tw_hak_akses where tabel='user' and user = '" . $_SESSION['Email'] . "' and insertData='1'";
+    $r = mysqli_query($con, $q);
+    if ($obj = @mysqli_fetch_object($r)) {
+    ?>
+        <?php
+        ?>
+        <link rel="stylesheet" type="text/css" href="tag.css">
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript" src="jquery.form.js"></script>
+        <div class="panel panel-primary">
+            <div class=" panel-heading">
+                <h3 class="panel-title">Add User</h3>
+            </div>
+            <div class="panel-body">
+                <div class="border border-dark">
+                    <form action=insertuserexec.php method=post enctype='multipart/form-data'>
+                        <div style="margin-bottom: 2rem;">
+                            <label for="Email" class="form-label">Email</label>
+                            <input type="text" class="form-control" name="Email" id="Email" aria-describedby="emailHelp" required>
+                        </div>
+                        <div style="margin-bottom: 2rem;">
+                            <label for="Password" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="Password" id="Password" required>
+                        </div>
+                        <div style="margin-bottom: 2rem;">
+                            <label for="Active" class="form-label">Active</label>
+                            <select name="Active" class="form-control" required>
+                                <option selected disabled>-- Pilih --</option>
+                                <option value="0" selected="">False</option>
+                                <option value="1">True</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" name="send_image">Insert</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
 <?php
-//cek otoritas
-$q = "SELECT * FROM tw_hak_akses where tabel='user' and user = '". $_SESSION['Email'] ."' and insertData='1'";
-$r = mysqli_query($con, $q);
-if ( $obj = @mysqli_fetch_object($r) )
- {
+        include("footer.php");
 ?>
 <?php
-echo "<table class='table table-striped'>";
-echo "<tr><td colspan=2><font face=Verdana color=black size=1>user</font></td></tr>";
-echo "<form action=insertuserexec.php method=post>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>Email</font></td>";
-echo "<td bgcolor=CCEEEE><input type=text  class='form-control' name='Email'></td>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>Password</font></td>";
-echo "<td bgcolor=CCEEEE><input type=password class='form-control' name='Password'></td>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>Active</font></td>";
-echo "<td bgcolor=CCEEEE>";
-echo "<select class='form-control' name='Active'>";
-echo "<option value='0'>False</option>";
-echo "<option value='1'>True</option>";
-echo "</select>";
-echo "</td>";
-echo "<tr><td colspan=2 align=center><button type=submit><font face=Verdana size=1>&nbsp;Insert&nbsp;</font></button></td></tr>";
-echo "</form>";
-echo "</table>";
- ?> 
- </div> 
- <?php 
-include("footer.php");
-?>
-<?php
-} else {
- //header("Location:content.php");
-}
+    } else {
+        //header("Location:content.php");
+    }
 ?>

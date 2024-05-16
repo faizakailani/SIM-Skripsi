@@ -1,27 +1,34 @@
 <?php
 session_start();
-if(!isset($_SESSION["Email"])){
-header("location:index.php");
+if (!isset($_SESSION["Email"])) {
+    header("location:index.php");
+    exit();
 }
 ?>
 <?php
 include("db.php");
 include("tulislog.php");
+
 $pk = mysqli_real_escape_string($con, $_POST["pk"]);
 $Email = mysqli_real_escape_string($con, $_POST["Email"]);
 $Password = mysqli_real_escape_string($con, $_POST["Password"]);
 $Active = mysqli_real_escape_string($con, $_POST["Active"]);
 
-if (isset($_POST['cp'])){
-if (isset($Email) && isset($Password) && isset($Active)){
-mysqli_query($con, "update user set Email='$Email', Password=md5('$Password'), Active='$Active' where Email='$Email'");
-}
+// Check if the password field is not empty
+if (!empty($Password)) {
+    $updateQuery = "UPDATE user SET Email='$Email', Password=md5('$Password'), Active='$Active' WHERE Email='$pk'";
 } else {
-if (isset($Email) && isset($Active)){ 
-mysqli_query($con, "update user set Email='$Email', Active='$Active' where Email='$Email'");
+    $updateQuery = "UPDATE user SET Email='$Email', Active='$Active' WHERE Email='$pk'";
 }
+
+// Execute the query
+if (mysqli_query($con, $updateQuery)) {
+    tulislog("update user", $con);
+    header("Location: listuser.php");
+    exit();
+} else {
+    echo "Error updating record: " . mysqli_error($con);
 }
- tulislog("update user", $con); 
-header("Location: listuser.php");
+
 mysqli_close($con);
 ?>

@@ -1,65 +1,61 @@
-<?php  
-session_start(); 
-if(!isset($_SESSION["Email"])){ 
-header("location:index.php");  
-}    
-?>  
-<html>  
-<head>  
-<title>SIM Skripsi</title>  
-<link rel="stylesheet" type="text/css" href="tag.css"> 
-<script type="text/javascript" src="jquery.js"></script>  
-<script type="text/javascript" src="jquery.form.js"></script>   
-<script> 
-$(document).ready(function(){  
-$('form').ajaxForm(function(){  
-alert("Uploaded SuccessFully"); 
-});  
-});  
-function preview_image(){  
-var total_file=document.getElementById("upload_file").files.length;  
-for(var i=0;i<total_file;i++){   
-	$('#image_preview').append("<imgsrc='"+URL.createObjectURL(event.target.files[i])+"'><br>"); 
-} 
-} 
-</script>   
-</head>  
-<body topmargin=0 leftmargin=0 marginwidth=0 marginheight=0 bgcolor =FFFFFF>  
-<?php 
-include("db.php"); 
-include("header.php"); 
-include("menu.php");    
-echo "<td bgcolor=F5F5F5 valign=top>"; 
-?> 
-<div id="page-wrapper">  
-<td valign=top>  
-<table class='table table-striped'>
-<tr><td colspan=2><font face=Verdana color=black size=1>Laporan program_studi/mahasiswa</font></td></tr>
-<form action="laporan_program_studimahasiswaexec.php" method="post" target="_blank">     
-<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>&nbsp;Tanggal Awal :</font></td> 
-<td bgcolor=CCEEEE><input type=text id='TanggalAwal' name='TanggalAwal' size=10>   
-<font face=Verdana color=black size=1><script type='text/javascript'>calendar.set('TanggalAwal');</script></font></td>
-<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>&nbsp;Tanggal Akhir :</font></td>  
+<?php
+session_start();
+if (!isset($_SESSION["Email"])) {
+	header("location:index.php");
+}
+?>
+<?php
+include("db.php");
+include("header.php");
+include("menu.php");
+?>
+<div id="page-wrapper" style="padding-top: 2rem;">
+	<link rel="stylesheet" type="text/css" href="tag.css">
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jquery.form.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('form').ajaxForm(function() {
+				alert("Uploaded SuccessFully");
+			});
+		});
 
-<td bgcolor=CCEEEE><input type=text id='TanggalAkhir' name='TanggalAkhir' size=10>   
-<font face=Verdana color=black size=1><script type='text/javascript'>calendar.set('TanggalAkhir');</script></font></td>  
-
-<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>&nbsp;Print Semua Data :&nbsp;</font></td>  
-<td bgcolor=CCEEEE>   
-	<select class='form-control' name=All>  
-		<option value="Tidak" selected="">Tidak</option> 
-		<option value="Ya">Ya</option>  
-	</select>
-</td> 
-</tr> 
-<tr><td colspan=2 align=center><input type=submit value=Proses></td></tr> 
-</form>  
-</table></td></tr>  
-</div> <div class="pagefooter">
- <?php 
- include("footer.php"); 
- mysqli_close($con);
- ?>
- </div>
-</body>  
-</html> 
+		function preview_image() {
+			var total_file = document.getElementById("upload_file").files.length;
+			for (var i = 0; i < total_file; i++) {
+				$('#image_preview').append("<imgsrc='" + URL.createObjectURL(event.target.files[i]) + "'><br>");
+			}
+		}
+	</script>
+	<div class="panel panel-primary">
+		<div class=" panel-heading">
+			<h3 class="panel-title">Laporan Program Studi / Mahasiswa</h3>
+		</div>
+		<div class="panel-body">
+			<div class="border border-dark">
+				<form action=laporan_program_studimahasiswaexec.php method=post enctype='multipart/form-data'>
+					<div style="margin-bottom: 2rem;">
+						<label for="TanggalAwal" class="form-label">Tanggal Awal</label>
+						<input type="date" class="form-control" name="TanggalAwal" id="TanggalAwal" aria-describedby="emailHelp" required>
+					</div>
+					<div style="margin-bottom: 2rem;">
+						<label for="TanggalAkhir" class="form-label">Tanggal Akhir</label>
+						<input type="date" class="form-control" name="TanggalAkhir" id="TanggalAkhir" required>
+					</div>
+					<div style="margin-bottom: 2rem;">
+						<label for="All" class="form-label">Print Semua Data</label>
+						<select name="All" class="form-control" required>
+							<option selected disabled>-- Pilih --</option>
+							<option value="Tidak" selected="">Tidak</option>
+							<option value="Ya">Ya</option>
+						</select>
+					</div>
+					<button class="btn btn-primary" name="send_image">Proses</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<?php
+include("footer.php");
+?>
