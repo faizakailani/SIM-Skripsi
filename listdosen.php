@@ -7,7 +7,7 @@ header("location:index.php");
 <?php     
 include("db.php");  
 include("header.php"); 
-include("menu.php"); 
+include("menu.php");
 ?>      
 <div id="page-wrapper">
 <?php
@@ -177,15 +177,17 @@ echo "</div>";
 
 echo "<div class='text-center'>";
 echo "<p>Total <b>$jmldata</b> data</p>";
-mysqli_close($con);
 echo "</div>";
-
 }
- ?>   
- </div> 
+?>   
+</div> 
+<div class="pagefooter">
  <?php 
-include("footer.php");
-?>
+ include("footer.php"); 
+ mysqli_close($con);
+ ?>
+ </div>
+ 
 <?php
 } else {
  //header("Location:content.php");

@@ -1,0 +1,45 @@
+/* Style untuk navigasi */
+.navbar {
+    background-color: transparent;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.navbar-brand {
+    color: #272829; 
+    font-weight: bold;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: #FFFFFF; 
+}
+
+.navbar-toggle {
+    background-color: #272829;
+    border-color: #FFFFFF; 
+}
+
+.navbar-toggle .icon-bar {
+    background-color: #FFFFFF;
+}
+
+.navbar-top-links li.dropdown .dropdown-menu {
+    background-color: transparent;
+}
+
+.navbar-top-links li.dropdown .dropdown-menu li a {
+    color: #272829; 
+    padding: 15px 20px;
+    font-size: 14px; 
+}
+
+.navbar-top-links li.dropdown .dropdown-menu li a:hover {
+    background-color: #ebebeb;
+    color: #1e1e1e; 
+}
+
+.navbar-top-links li.dropdown .dropdown-menu li.divider {
+    background-color: #1e1e1e;
+}
+

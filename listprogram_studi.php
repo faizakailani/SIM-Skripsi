@@ -169,17 +169,18 @@ if($halaman < $jmlhal){
 }
 echo "</ul>";
 echo "</div>";
-
 echo "<div class='text-center'>";
 echo "<p>Total <b>$jmldata</b> data</p>";
-mysqli_close($con);
 echo "</div>";
 }
  ?>   
  </div> 
+ <div class="pagefooter">
  <?php 
-include("footer.php");
-?>
+ include("footer.php"); 
+ mysqli_close($con);
+ ?>
+ </div>
 <?php
 } else {
  //header("Location:content.php");

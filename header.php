@@ -24,6 +24,13 @@
     <link href="bower_components/morrisjs/morris.css" rel="stylesheet">  
     <!-- Custom Fonts -->          
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> 
+    <!-- Custom Navbar -->          
+    <link href="navbar.css" rel="stylesheet">
+   <!-- Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->     
     <!-- WARNING: Respond.js doesnt work if you view the page via file:// -->  
     <!--[if lt IE 9]>                                                             
@@ -109,14 +116,14 @@ while($rset = mysqli_fetch_array($hset)){
             <ul class="nav navbar-top-links navbar-right">   
                <li class="dropdown">         
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">    
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>    
+                    <i class="fa-solid fa-user" style="color: #272829;"></i> <i class="fa-solid fa-caret-down" style="color: #272829;"></i>    
                     </a>             
                     <ul class="dropdown-menu dropdown-user">   
-                        <li><a href="#"><font size=1><i class="fa fa-user fa-fw"></i><?php echo $_SESSION['Email'];?></font></a> 
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i><?php echo $_SESSION['Email'];?></a> 
                         </li>                
-                        <li><a href="listsetting.php"><font size=1><i class="fa fa-gear fa-fw"></i> Settings</font></a>
-                        </li>         
-                    </ul>          
+                        <li><a href="listsetting.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                    </ul>         
                     <!-- /.dropdown-user -->     
                 </li>                    
                <!-- /.dropdown -->    
