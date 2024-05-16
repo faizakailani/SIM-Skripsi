@@ -1,63 +1,76 @@
 <?php
 session_start();
-if(!isset($_SESSION["Email"])){
-header("location:index.php");
+if (!isset($_SESSION["Email"])) {
+    header("location:index.php");
 }
 ?>
-<?php 
-include("db.php");  
-include("header.php"); 
-include("menu.php"); 
-?> 
-<div id="page-wrapper">  
 <?php
-//cek otoritas
-$q = "SELECT * FROM tw_hak_akses where tabel='user' and user = '". $_SESSION['Email'] ."' and editData='1'";
-$r = mysqli_query($con, $q);
-if ( $obj = @mysqli_fetch_object($r) )
- {
+include("db.php");
+include("header.php");
+include("menu.php");
+?>
+<div id="page-wrapper" style="padding-top: 2rem;">
+    <?php
+    //cek otoritas
+    $q = "SELECT * FROM tw_hak_akses where tabel='user' and user = '" . $_SESSION['Email'] . "' and editData='1'";
+    $r = mysqli_query($con, $q);
+    if ($obj = @mysqli_fetch_object($r)) {
+    ?>
+        <?php
+        ?>
+        <link href="standar.css" rel="stylesheet" type="text/css">
+
+        <div class="panel panel-primary">
+            <div class=" panel-heading">
+                <h3 class="panel-title">Edit User</h3>
+            </div>
+            <div class="panel-body">
+                <div class="border border-dark">
+                    <form action=edituserexec.php method=post enctype='multipart/form-data'>
+                        <?php
+                        $result = mysqli_query($con, "SELECT * FROM user where Email = '" . $_GET['Email'] . "'");
+                        while ($row = mysqli_fetch_array($result)) {
+                        ?>
+                            <input type="hidden" name="pk" value="<?php echo $row['Email'] ?>">
+                            <div style="margin-bottom: 2rem;">
+                                <label for="Email" class="form-label">Email</label>
+                                <input type="text" class="form-control" name="Email" id="Email" value="<?php echo $row['Email'] ?>" required>
+                            </div>
+                            <div style="margin-bottom: 2rem;">
+                                <label for="Password" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="Password" id="Password" value="<?php echo $row['Password'] ?>" required>
+                            </div>
+                            <div style="margin-bottom: 2rem;">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="cp" value="ok">
+                                    <label class="form-check-label" for="cp">Change Password</label>
+                                </div>
+                            </div>
+                            <?php
+                            $activeStatus = $row['Active'];
+                            ?>
+                            <div style="margin-bottom: 2rem;">
+                                <label for="Active" class="form-label">Active</label>
+                                <select name="Active" class="form-control" required>
+                                    <option selected disabled>-- Pilih --</option>
+                                    <option value="0" <?php echo $activeStatus == False ? 'selected' : ''; ?>>False</option>
+                                    <option value="1" <?php echo $activeStatus == 1 ? 'selected' : ''; ?>>True</option>
+                                </select>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                        <button class="btn btn-primary" name="send_image">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+<?php
+        include("footer.php");
 ?>
 <?php
-echo "<table class='table table-striped'>";
-echo "<tr><td colspan=2><font face=Verdana color=black size=1>user</font></td></tr>";
-echo "<form action=edituserexec.php method=post>";
-$result = mysqli_query($con, "SELECT * FROM user where Email = '". $_GET['Email'] . "'");
-while($row = mysqli_fetch_array($result))
-{
-echo "<tr><td colspan=2><input type=hidden name=pk value='" . $row['Email'] . "'></td></tr>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>&nbsp;&nbsp;Email&nbsp;&nbsp;</font></td>";
-echo "<td bgcolor=CCEEEE><font face=Verdana color=black size=1>" . $row['Email'] . "</font></td>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>&nbsp;&nbsp;Email&nbsp;&nbsp;</font></td>";
-echo "<td bgcolor=CCEEEE><input type=text  class='form-control' name='Email' value='". $row['Email'] ."'></td>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>&nbsp;&nbsp;Password&nbsp;&nbsp;</font></td>";
-echo "<td bgcolor=CCEEEE><input type=password class='form-control' name='Password' value='". $row['Password'] ."'>";
-echo "<input type=checkbox name='cp' value='ok'><font face=Verdana color=black size=1>change password</font></td>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>&nbsp;&nbsp;Active&nbsp;&nbsp;</font></td>";
-echo "<td bgcolor=CCEEEE>";
-echo "<select class='form-control' name='Active'>";
-if ($row['Active'] == '0') {
-echo "<option value='0' selected>False</option>";
-}else{
-echo "<option value='0'>False</option>";
-} 
-if ($row['Active'] == '1') { 
-echo "<option value='1' selected>True</option>"; 
-}else{
-echo "<option value='1'>True</option>";
-}
-echo "</select>";
-echo "</td>";
-echo "<tr><td colspan=2 align=center><button type='submit' class='btn btn-primary'><font face=Verdana size=1><i class='fa fa-edit'></i>&nbsp;Edit</font></button></td></tr>";
-echo "</form>";
-echo "</table></td></tr>";
-}
- ?>
- </div>  
- <?php  
-include("footer.php");
-?>
-<?php
-} else {
- //header("Location:content.php");
-}
+    } else {
+        //header("Location:content.php");
+    }
 ?>
