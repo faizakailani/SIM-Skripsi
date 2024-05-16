@@ -56,8 +56,10 @@ echo "<td bgcolor=F5F5F5 valign=top>";
 </form>  
 </table></td></tr>  
 </div> 
-<?php echo "</td>";  
-include("footer.php");  
-?>  
+<div class="pagefooter">
+ <?php 
+ include("footer.php"); 
+ ?>
+ </div>
 </body>  
 </html> 

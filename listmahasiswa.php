@@ -178,15 +178,16 @@ echo "</div>";
 echo "<div class='text-center'>";
 echo "<p>Total <b>$jmldata</b> data</p>";
 echo "</div>";
-mysqli_close($con);
 echo "</td></tr>";
 }
  ?>   
  </div> 
+ <div class="pagefooter">
  <?php 
-include("footer.php");
-?>
-<?php
+ include("footer.php"); 
+ mysqli_close($con);
+ ?>
+ </div><?php
 } else {
  //header("Location:content.php");
 }

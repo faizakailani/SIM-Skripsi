@@ -55,9 +55,11 @@ echo "<td bgcolor=F5F5F5 valign=top>";
 <tr><td colspan=2 align=center><input type=submit value=Proses></td></tr> 
 </form>  
 </table></td></tr>  
-</div> 
-<?php echo "</td>";  
-include("footer.php");  
-?>  
+</div> <div class="pagefooter">
+ <?php 
+ include("footer.php"); 
+ mysqli_close($con);
+ ?>
+ </div>
 </body>  
 </html> 

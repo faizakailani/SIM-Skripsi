@@ -26,26 +26,7 @@ while($rowSetting = mysqli_fetch_array($setting)){
 ?>      
 <div id="page-wrapper">   
  <div class="container-fluid">  
-<?php echo "<br>"; ?> 
  <div class="div-1">  
-<table> 
-   <tr>    
-     <td>&nbsp;&nbsp;</td>
-     <td><?php echo "<img src='images/" . $Logo . "' width=110 height=110><br>"; ?></td>
-     <td>&nbsp;&nbsp;</td>
-     <td>
-       <?php
-         echo "<h1>&nbsp; ". $Nama ."</h1>";
-         echo "&nbsp;&nbsp;&nbsp;". $Alamat;
-         echo "<br>";
-         echo "&nbsp;&nbsp;&nbsp;". $Telepon;
-         echo " - ";
-         echo $Email;
-         echo "<br><br>";
-       ?>
-     </td>
-   </tr>
- </table>
  </div>  
                 <!-- Page Heading --> 
                 <div class="row">   
