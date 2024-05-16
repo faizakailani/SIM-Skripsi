@@ -1,64 +1,142 @@
 <?php
 session_start();
-if(!isset($_SESSION["Email"])){
-header("location:index.php");
+if (!isset($_SESSION["Email"])) {
+  header("location:index.php");
 }
 ?>
- <?php 
-include("db.php");  
-include("header.php"); 
-include("menu.php"); 
-include("tulislog.php"); 
-?> 
-<div id="page-wrapper">  
 <?php
-//cek otoritas
-$q = "SELECT * FROM tw_hak_akses where tabel='setting' and user = '". $_SESSION['Email'] ."' and viewData='1'";
-$r = mysqli_query($con, $q);
-if ( $obj = @mysqli_fetch_object($r) )
- {
+include("db.php");
+include("header.php");
+include("menu.php");
+include("tulislog.php");
 ?>
-<html>
-<head>
-<title>SIM Skripsi</title>
-<link rel="stylesheet" type="text/css" href="tag.css">
-<script type="text/javascript" src="tag.js"></script>
-<script type="text/javascript" src="kalender/calendar.js"></script>
-<link href="kalender/calendar.css" rel="stylesheet" type="text/css" media="screen">
-</head>
-<body topmargin=0 leftmargin=0 marginwidth=0 marginheight=0 bgcolor =FFFFFF>
-<?php
-echo "<td bgcolor=F5F5F5 valign=top>";
-echo "<div class='table-responsive'> "; 
-echo "<table class='table table-striped'>"; 
-echo "<tr><td colspan=2><font face=Verdana color=black size=1>setting</font></td></tr>";
-$result = mysqli_query($con, "SELECT * FROM setting where ID = ". mysqli_real_escape_string($con, $_GET['ID']) . "");
-while($row = mysqli_fetch_array($result))
-{
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>ID</font></td>";
-echo "<td bgcolor=CCEEEE><font face=Verdana color=black size=1>" . $row['ID'] . "</font></td>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>Nama</font></td>";
-echo "<td bgcolor=CCEEEE><font face=Verdana color=black size=1>" . $row['Nama'] . "</font></td>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>Alamat</font></td>";
-echo "<td bgcolor=CCEEEE><font face=Verdana color=black size=1>" . $row['Alamat'] . "</font></td>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>Telepon</font></td>";
-echo "<td bgcolor=CCEEEE><font face=Verdana color=black size=1>" . $row['Telepon'] . "</font></td>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>Email</font></td>";
-echo "<td bgcolor=CCEEEE><font face=Verdana color=black size=1>" . $row['Email'] . "</font></td>";
-echo "<tr><td bgcolor=CCCCCC><font face=Verdana color=black size=1>Logo</font></td>";
-  echo "<td bgcolor=CCEEEE><font face=Verdana color=black size=1><a href='images/" . $row['Logo'] . "' target=_blank><img src='images/" . $row['Logo'] . "' width=100 height=100></a></font></td>";
-echo "<tr><td colspan=2 align=center><a href=listsetting.php><button type='button' class='btn btn-warning'><font face=Verdana size=1><i class='fa fa-check'></i>&nbsp;Back</font></button></a></td></tr>";
-echo "</table><br>";
-echo "</div>"; 
-}
- tulislog("view setting", $con); 
- ?>   
- </div> 
- <?php 
-include("footer.php");
-?>
-<?php
-} else {
- //header("Location:content.php");
-}
-?>
+<div id="page-wrapper" style="padding-top: 2rem">
+  <?php
+  //cek otoritas
+  $q = "SELECT * FROM tw_hak_akses where tabel='setting' and user = '" . $_SESSION['Email'] . "' and viewData='1'";
+  $r = mysqli_query($con, $q);
+  if ($obj = @mysqli_fetch_object($r)) {
+  ?>
+    <?php
+    ?>
+    <link href="standar.css" rel="stylesheet" type="text/css">
+
+    <!-- calendar -->
+    <script src="php_calendar/scripts.js" type="text/javascript"></script>
+    <!-- TinyMCE -->
+    <script type="text/javascript" src="tiny_mce/tiny_mce.js"></script>
+    <script type="text/javascript">
+      tinyMCE.init({
+        mode: "textareas",
+        theme: "advanced",
+        plugins: "youtube,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,zoom,flash,searchreplace,print,paste,directionality,fullscreen,noneditable,contextmenu",
+        theme_advanced_buttons1_add_before: "save,newdocument,separator",
+        theme_advanced_buttons1_add: "fontselect,fontsizeselect",
+        theme_advanced_buttons2_add: "separator,insertdate,inserttime,preview,zoom,separator,forecolor,backcolor,liststyle",
+        theme_advanced_buttons2_add_before: "cut,copy,paste,pastetext,pasteword,separator,search,replace,separator",
+        theme_advanced_buttons3_add_before: "tablecontrols,separator,youtube,separator",
+        theme_advanced_buttons3_add: "emotions,iespell,flash,advhr,separator,print,separator,ltr,rtl,separator,fullscreen",
+        theme_advanced_toolbar_location: "top",
+        theme_advanced_toolbar_align: "left",
+        theme_advanced_statusbar_location: "bottom",
+        plugin_insertdate_dateFormat: "%Y-%m-%d",
+        plugin_insertdate_timeFormat: "%H:%M:%S",
+        extended_valid_elements: "hr[class|width|size|noshade]",
+        file_browser_callback: "fileBrowserCallBack",
+        paste_use_dialog: false,
+        theme_advanced_resizing: true,
+        theme_advanced_resize_horizontal: false,
+        theme_advanced_link_targets: "_something=My somthing;_something2=My somthing2;_something3=My somthing3;",
+        media_strict: false,
+        apply_source_formatting: true
+      });
+
+      function fileBrowserCallBack(field_name, url, type, win) {
+        var connector = "../../filemanager/browser.html?Connector=connectors/php/connector.php";
+        var enableAutoTypeSelection = true;
+
+        var cType;
+        tinymcpuk_field = field_name;
+        tinymcpuk = win;
+
+        switch (type) {
+          case "image":
+            cType = "Image";
+            break;
+          case "flash":
+            cType = "Flash";
+            break;
+          case "file":
+            cType = "File";
+            break;
+        }
+
+        if (enableAutoTypeSelection && cType) {
+          connector += "&Type=" + cType;
+        }
+
+        window.open(connector, "tinymcpuk", "modal,width=600,height=400");
+      }
+    </script>
+    <!-- /TinyMCE -->
+    <div class="panel panel-primary">
+      <div class=" panel-heading">
+        <h3 class="panel-title">View Setting</h3>
+      </div>
+      <div class="panel-body">
+        <div class="border border-dark">
+          <form>
+            <?php
+            $result = mysqli_query($con, "SELECT * FROM setting where ID = " . mysqli_real_escape_string($con, $_GET['ID']) . "");
+            while ($row = mysqli_fetch_array($result)) {
+            ?>
+              <div style="margin-bottom: 2rem;">
+                <label for="ID" class="form-label">ID</label>
+                <input type="text" class="form-control" name="ID" id="ID" value="<?php echo $row['ID'] ?>" required readonly>
+              </div>
+              <div style="margin-bottom: 2rem;">
+                <label for="Nama" class="form-label">Nama</label>
+                <input type="text" class="form-control" name="Nama" id="Nama" value="<?php echo $row['Nama'] ?>" required readonly>
+              </div>
+              <div style="margin-bottom: 2rem;">
+                <label for="Alamat" class="form-label">Alamat</label>
+                <div style="margin-bottom: 2rem;">
+                  <span>
+                    <?php echo $row['Alamat'] ?>
+                  </span>
+                </div>
+              </div>
+              <div style="margin-bottom: 2rem;">
+                <label for="IpAddress" class="form-label">Telepon</label>
+                <input type="text" class="form-control" name="Telepon" id="Telepon" value="<?php echo $row['Telepon'] ?>" required readonly>
+              </div>
+              <div style="margin-bottom: 2rem;">
+                <label for="Email" class="form-label">Email</label>
+                <input type="text" class="form-control" name="Email" id="Email" value="<?php echo $row['Email'] ?>" required readonly>
+              </div>
+              <div style="margin-bottom: 3rem;">
+                <label for="inputFile" class="form-label">Logo</label><br>
+                <?php if (isset($row['ID'])) {
+                  if (!empty($row['Logo'])) { ?>
+                    <a href="images/<?php echo $row['Logo'] ?>" target="_blank"><img src="
+                            images/<?php echo $row['Logo'] ?>" width="100px" height="100px" alt="logo" style="margin: 0 0 5px 10px"></a>
+                <?php }
+                } ?>
+              </div>
+            <?php } ?>
+            <a href=listsetting.php><button type="button" class="btn btn-warning">Back</button></a>
+          </form>
+        </div>
+      </div>
+      <?php
+      tulislog("view setting", $con);
+      ?>
+    </div>
+    <?php
+    include("footer.php");
+    ?>
+  <?php
+  } else {
+    //header("Location:content.php");
+  }
+  ?>
