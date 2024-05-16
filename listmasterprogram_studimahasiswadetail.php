@@ -74,9 +74,9 @@ while($row = mysqli_fetch_array($result))
   {
   if ($firstColumn == 1) {
 echo "<tr bgcolor=337ab7>
-<th><font color=black size=2><b>NIM</b></font></th>
-<th><font color=black size=2><b>Nama</b></font></th>
-<th><font color=black size=2><b>Program_Studi</b></font></th>
+<th><font color=white size=2><b>NIM</b></font></th>
+<th><font color=white size=2><b>Nama</b></font></th>
+<th><font color=white size=2><b>Program_Studi</b></font></th>
 <th class='align-middle'><font color=white size=2>Foto</font></th>
 <th class='align-middle'><font color=white size=2>Aksi</font></th>
 </tr>";
