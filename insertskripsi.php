@@ -9,7 +9,7 @@ include("db.php");
 include("header.php");
 include("menu.php");
 ?>
-<div id="page-wrapper">
+<div id="page-wrapper" style="padding-top: 2rem;">
     <?php
     //cek otoritas
     $q = "SELECT * FROM tw_hak_akses where tabel='skripsi' and user = '" . $_SESSION['Email'] . "' and insertData='1'";
