@@ -116,10 +116,11 @@ $firstColumn = 0;
 	$warna = 0;
   }
   echo "<td><font face=Verdana color=black size=2>" . $row['tabel'] . "</font></td>";
-  echo "<td class='align-middle'><a class=linklist href=viewmastertw_tabeltw_hak_akses.php?tabel=".$row['tabel']."><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
+  echo "<td class='align-middle'><a class=linklist href=listmastertw_tabeltw_hak_aksesdetail.php?tabel=".$row['tabel']."><button type='button' class='btn btn-success'><font face=Verdana color=white size=1>Kelola Akses</font></button></a>";
+  echo "<a class=linklist href=viewmastertw_tabeltw_hak_akses.php?tabel=".$row['tabel']."><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";
   echo "<a class=linklist href=editmastertw_tabeltw_hak_akses.php?tabel=".$row['tabel']."><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit data'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";
-  echo "<a class=linklist href=deletemastertw_tabeltw_hak_akses.php?tabel=".$row['tabel']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a>";
-  echo "<a class=linklist href=listmastertw_tabeltw_hak_aksesdetail.php?tabel=".$row['tabel']."><button type='button' class='btn btn-success'><font face=Verdana color=white size=1>Kelola Akses</font></a></td>";
+  echo "<a class=linklist href=deletemastertw_tabeltw_hak_akses.php?tabel=".$row['tabel']." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-trash'></i></font></button></a></td>";
+  
   echo "</tr>";
   }
 echo "</table><br>";

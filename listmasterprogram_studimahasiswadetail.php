@@ -92,12 +92,12 @@ $firstColumn = 0;
   echo "<td><font face=Verdana color=black size=2>" . $row['NIM'] . "</font></td>";
   echo "<td><font face=Verdana color=black size=2>" . $row['Nama'] . "</font></td>";
   echo "<td><font face=Verdana color=black size=2>" . $row['Program_Studi'] . "<br>";
-  $l = mysqli_query($con, "select Program_Studi from program_studi where Program_Studi = '". $row['Program_Studi'] ."'"); 
-  while($rl = mysqli_fetch_array($l)){  
-    echo $rl[0];    
-  } 
+  $l = mysqli_query($con, "select Program_Studi from program_studi where Kode = '" . $row['Program_Studi'] . "'");
+  while ($rl = mysqli_fetch_array($l)) {
+  echo $rl[0];
+  }
   echo "</font></td>";
-  echo "<td><font face=Verdana color=black size=1><a href='images/" . $row['NIDN_Kaprodi'] . "' target=_blank><img src='images/" . $row['NIDN_Kaprodi'] . "'  width=50 height=50></a></font></td>";
+  echo "<td class='align-middle'><font face=Verdana color=black size=1><a href='images/" . $row['Foto'] . "' target=_blank><img src='images/" . $row['Foto'] . "'  width=50 height=50></a></font></td>";
   if(isset($_GET['Kode'])){echo "<td class='align-middle'><a class=linklist href=viewmasterprogram_studimahasiswadetail.php?NIM=".$row['NIM']."&Kode=". mysqli_real_escape_string($con, $_GET['Kode']) ."><button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Lihat data'><font face=Verdana size=1><i class='fa fa-eye'></i></font></button></a>";}
   if(isset($_GET['Kode'])){echo "<a class=linklist href=editmasterprogram_studimahasiswadetail.php?NIM=".$row['NIM']."&Kode=". mysqli_real_escape_string($con, $_GET['Kode']) ."><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit data'><font face=Verdana size=1><i class='fa fa-edit'></i></font></button></a>";}
   if(isset($_GET['Kode'])){echo "<a class=linklist href=deletemasterprogram_studimahasiswadetail.php?NIM=".$row['NIM']."&Kode=". mysqli_real_escape_string($con, $_GET['Kode']) ." onclick=\"return confirm('Are you sure you want to delete this data?')\"><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='Hapus data'><font face=Verdana size=1><i class='fa fa-Trash'></i></font></button></a></td>";}
