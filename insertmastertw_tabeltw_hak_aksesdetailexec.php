@@ -17,6 +17,7 @@ $deleteData= mysqli_real_escape_string($con, $_POST["deleteData"]);
 $detailData= mysqli_real_escape_string($con, $_POST["detailData"]);
 
  mysqli_query($con, "INSERT INTO tw_hak_akses(id,tabel,user,listData,viewData,insertData,editData,deleteData,detailData) VALUES (null,'$tabel','$user','$listData','$viewData','$insertData','$editData','$deleteData','$detailData')");
-header("Location: listmastertw_tabeltw_hak_aksesdetail.php?tabel=$tabel");
+ $_SESSION["success_message"] = "Data berhasil disimpan!";
+ header("Location: listmastertw_tabeltw_hak_aksesdetail.php?tabel=$tabel");
 mysqli_close($con)
 ?>

@@ -42,6 +42,7 @@ $Foto = $namaBaruFile;
 
 if ($NIM!= ""){
  mysqli_query($con, "INSERT INTO mahasiswa(NIM,Nama,Program_Studi,Foto) VALUES ('$NIM','$Nama','$Program_Studi','$Foto')");
+ $_SESSION["success_message"] = "Data berhasil disimpan!";
 }
 header("Location: listmastermahasiswaskripsi.php");
 mysqli_close($con)

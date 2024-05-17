@@ -19,6 +19,7 @@ $detailData= mysqli_real_escape_string($con, $_POST["detailData"]);
 
 if (isset($id) && isset($tabel) && isset($user) && isset($listData) && isset($viewData) && isset($insertData) && isset($editData) && isset($deleteData) && isset($detailData)){
 mysqli_query($con, "INSERT INTO tw_hak_akses(id,tabel,user,listData,viewData,insertData,editData,deleteData,detailData) VALUES (null,'$tabel','$user','$listData','$viewData','$insertData','$editData','$deleteData','$detailData')");
+$_SESSION["success_message"] = "Data berhasil disimpan!";
 }
 
 tulislog("insert into tw_hak_akses", $con); 

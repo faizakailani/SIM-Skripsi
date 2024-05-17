@@ -16,6 +16,7 @@ if ( $obj = @mysqli_fetch_object($r) )
 include("tulislog.php");
 $Email = mysqli_real_escape_string($con, $_REQUEST[Email]);
 $result = mysqli_query($con, "DELETE FROM user WHERE Email = '". $Email . "'");
+$_SESSION["delete_success"] = "Data berhasil dihapus.";
  tulislog("delete from user", $con); 
 header("Location:listuser.php");
 mysqli_close($con);

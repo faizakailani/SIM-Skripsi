@@ -27,6 +27,47 @@
         });              
         </script>
    <?php 
+   if (isset($_SESSION["success_message"])) {
+    $message = $_SESSION["success_message"];
+          echo "<script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      Swal.fire({
+                          icon: 'success',
+                          title: 'Berhasil!',
+                          text: '$message'
+                      });
+                  });
+                </script>";
+          unset($_SESSION["success_message"]);
+  }
+  
+  if (isset($_SESSION["delete_success"])) {
+    echo "<script>
+              document.addEventListener('DOMContentLoaded', function() {
+                  Swal.fire({
+                      icon: 'success',
+                      title: 'Berhasil!',
+                      text: '{$_SESSION['delete_success']}'
+                  });
+              });
+            </script>";
+      unset($_SESSION['delete_success']);
+     
+  }
+  
+  if (isset($_SESSION['edit_success'])) {
+    $message = $_SESSION['edit_success'];
+    echo "<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: '$message'
+                });
+            });
+          </script>";
+    unset($_SESSION['edit_success']);
+  }
    $setting = mysqli_query($con, 'select * from setting'); 
     while($rowSetting = mysqli_fetch_array($setting)){ 
         $Nama = $rowSetting[1]; 

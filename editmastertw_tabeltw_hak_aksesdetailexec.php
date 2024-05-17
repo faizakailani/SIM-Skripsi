@@ -18,6 +18,7 @@ $deleteData = mysqli_real_escape_string($con, $_POST["deleteData"]);
 $detailData = mysqli_real_escape_string($con, $_POST["detailData"]);
 
 mysqli_query($con, "update tw_hak_akses set id='$id', tabel='$tabel', user='$user', listData='$listData', viewData='$viewData', insertData='$insertData', editData='$editData', deleteData='$deleteData', detailData='$detailData' where id=$pk");
+$_SESSION["edit_success"] = "Data berhasil diubah.";
 header("Location: listmastertw_tabeltw_hak_aksesdetail.php?tabel=$tabel");
 mysqli_close($con);
 ?>

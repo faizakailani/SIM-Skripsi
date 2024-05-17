@@ -26,8 +26,24 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 <?php
+session_start();
+
+if (isset($_SESSION["login_error"])) {
+	$message = $_SESSION["login_error"];
+	echo "<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				Swal.fire({
+					icon: 'error',
+					title: 'Login gagal!',
+					text: '$message'
+				});
+			});
+		  </script>";
+	unset($_SESSION["login_error"]);
+}
 //ambil data setting 
 $hset = mysqli_query($con ,"select * from setting");  
 while($rset = mysqli_fetch_array($hset)){
@@ -95,6 +111,6 @@ while($rset = mysqli_fetch_array($hset)){
 	<script src="vendor/countdowntime/countdowntime.js"></script>  
 <!--===============================================================================================--> 
 	<script src="js/main.js"></script>
-
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 </body> 
 </html> 

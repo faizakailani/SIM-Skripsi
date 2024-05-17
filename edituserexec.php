@@ -24,6 +24,8 @@ if (!empty($Password)) {
 // Execute the query
 if (mysqli_query($con, $updateQuery)) {
     tulislog("update user", $con);
+$_SESSION["edit_success"] = "Data berhasil diubah.";
+
     header("Location: listuser.php");
     exit();
 } else {

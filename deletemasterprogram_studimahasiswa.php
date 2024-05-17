@@ -14,6 +14,7 @@ if ($obj = @mysqli_fetch_object($r)) {
 <?php
     $Kode = mysqli_real_escape_string($con, $_REQUEST['Kode']);
     $result = mysqli_query($con, "DELETE FROM program_studi WHERE Kode = '" . $Kode . "'");
+    $_SESSION["delete_success"] = "Data berhasil dihapus.";
     header("Location:listmasterprogram_studimahasiswa.php");
     mysqli_close($con);
 ?>

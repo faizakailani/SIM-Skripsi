@@ -15,6 +15,7 @@ if ( $obj = @mysqli_fetch_object($r) )
 <?php
 $NIDN = mysqli_real_escape_string($con, $_REQUEST[NIDN]);
 $result = mysqli_query($con, "DELETE FROM dosen WHERE NIDN = '". $NIDN . "'");
+$_SESSION["delete_success"] = "Data berhasil dihapus.";
 header("Location:listmasterdosenskripsi.php");
 mysqli_close($con);
 ?>

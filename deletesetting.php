@@ -16,6 +16,7 @@ if ( $obj = @mysqli_fetch_object($r) )
 include("tulislog.php");
 $ID = mysqli_real_escape_string($con, $_REQUEST[ID]);
 $result = mysqli_query($con, "DELETE FROM setting WHERE ID = '". $ID . "'");
+$_SESSION["delete_success"] = "Data berhasil dihapus.";
  tulislog("delete setting", $con); 
 header("Location:listsetting.php");
 mysqli_close($con);

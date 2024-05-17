@@ -11,6 +11,7 @@ $pk = mysqli_real_escape_string($con, $_POST["pk"]);
 $tabel = mysqli_real_escape_string($con, $_POST["tabel"]);
 
 mysqli_query($con, "update tw_tabel set tabel='$tabel' where tabel='$pk'");
+$_SESSION["edit_success"] = "Data berhasil diubah.";
  tulislog("update tw_tabel", $con); 
 header("Location: listtw_tabel.php");
 mysqli_close($con);

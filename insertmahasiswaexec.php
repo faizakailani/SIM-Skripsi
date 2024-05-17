@@ -42,6 +42,7 @@ if( $file['error'] == 0 ){
 $Foto = $namaBaruFile; 
 if (isset($NIM) && isset($Nama) && isset($Program_Studi) && isset($Foto)){
 mysqli_query($con, "INSERT INTO mahasiswa(NIM,Nama,Program_Studi,Foto) VALUES ('$NIM','$Nama','$Program_Studi','$Foto')");
+$_SESSION["success_message"] = "Data berhasil disimpan!";
 }
 
 tulislog("insert into mahasiswa", $con); 

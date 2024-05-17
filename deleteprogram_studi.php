@@ -15,6 +15,7 @@ if ($obj = @mysqli_fetch_object($r)) {
     include("tulislog.php");
     $Kode = mysqli_real_escape_string($con, $_REQUEST['Kode']);
     $result = mysqli_query($con, "DELETE FROM program_studi WHERE Kode = '" . $Kode . "'");
+    $_SESSION["delete_success"] = "Data berhasil dihapus.";
     tulislog("delete program_studi", $con);
     header("Location:listprogram_studi.php");
     mysqli_close($con);

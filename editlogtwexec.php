@@ -15,6 +15,7 @@ $IpAddress = mysqli_real_escape_string($con, $_POST["IpAddress"]);
 $Information = mysqli_real_escape_string($con, $_POST["Information"]);
 
 mysqli_query($con, "update logtw set id='$id', Time='$Time', User='$User', IpAddress='$IpAddress', Information='$Information' where id='$pk'");
+$_SESSION["edit_success"] = "Data berhasil diubah.";
  tulislog("update logtw", $con); 
 header("Location: listlogtw.php");
 mysqli_close($con);

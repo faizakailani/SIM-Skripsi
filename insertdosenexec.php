@@ -41,6 +41,7 @@ if( $file['error'] == 0 ){
 $Foto = $namaBaruFile; 
 if (isset($NIDN) && isset($Nama) && isset($Foto)){
 mysqli_query($con, "INSERT INTO dosen(NIDN,Nama,Foto) VALUES ('$NIDN','$Nama','$Foto')");
+$_SESSION["success_message"] = "Data berhasil disimpan!";
 }
 
 tulislog("insert into dosen", $con); 

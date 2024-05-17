@@ -23,6 +23,7 @@ $Keterangan= mysqli_real_escape_string($con, $_POST["Keterangan"]);
 
 if (isset($id) && isset($NIM) && isset($Pembimbing) && isset($Penguji1) && isset($Penguji2) && isset($Tanggal_Daftar) && isset($Tanggal_Sidang) && isset($Ruang_Sidang) && isset($Nilai_Pembimbing) && isset($Nilai_Penguji1) && isset($Nilai_Penguji2) && isset($Nilai_Akhir) && isset($Keterangan)){
 mysqli_query($con, "INSERT INTO skripsi(id,NIM,Pembimbing,Penguji1,Penguji2,Tanggal_Daftar,Tanggal_Sidang,Ruang_Sidang,Nilai_Pembimbing,Nilai_Penguji1,Nilai_Penguji2,Nilai_Akhir,Keterangan) VALUES (null,'$NIM','$Pembimbing','$Penguji1','$Penguji2','$Tanggal_Daftar','$Tanggal_Sidang','$Ruang_Sidang','$Nilai_Pembimbing','$Nilai_Penguji1','$Nilai_Penguji2','$Nilai_Akhir','$Keterangan')");
+$_SESSION["success_message"] = "Data berhasil disimpan!";
 }
 
 tulislog("insert into skripsi", $con); 

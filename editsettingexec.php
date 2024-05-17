@@ -16,7 +16,10 @@ $Email = mysqli_real_escape_string($con, $_POST["Email"]);
 $Logo = mysqli_real_escape_string($con, $_POST["Logo"]);
 
 mysqli_query($con, "update setting set ID='$ID', Nama='$Nama', Alamat='$Alamat', Telepon='$Telepon', Email='$Email', Logo='$Logo' where ID=$pk");
- tulislog("update setting", $con); 
+$_SESSION["edit_success"] = "Data berhasil diubah.";
+ 
+tulislog("update setting", $con); 
 header("Location: listsetting.php");
+
 mysqli_close($con);
 ?>

@@ -15,6 +15,7 @@ $Information = mysqli_real_escape_string($con, $_POST["Information"]);
 
 if (isset($id) && isset($Time) && isset($User) && isset($IpAddress) && isset($Information)) {
     mysqli_query($con, "INSERT INTO logtw(id,Time,User,IpAddress,Information) VALUES (null,'$Time','$User','$IpAddress','$Information')");
+    $_SESSION["success_message"] = "Data berhasil disimpan!";
 }
 
 tulislog("insert into logtw", $con);

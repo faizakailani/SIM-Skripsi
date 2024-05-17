@@ -22,6 +22,7 @@ $Nilai_Akhir = mysqli_real_escape_string($con, $_POST["Nilai_Akhir"]);
 $Keterangan = mysqli_real_escape_string($con, $_POST["Keterangan"]);
 
 mysqli_query($con, "update skripsi set id='$id', NIM='$NIM', Pembimbing='$Pembimbing', Penguji1='$Penguji1', Penguji2='$Penguji2', Tanggal_Daftar='$Tanggal_Daftar', Tanggal_Sidang='$Tanggal_Sidang', Ruang_Sidang='$Ruang_Sidang', Nilai_Pembimbing='$Nilai_Pembimbing', Nilai_Penguji1='$Nilai_Penguji1', Nilai_Penguji2='$Nilai_Penguji2', Nilai_Akhir='$Nilai_Akhir', Keterangan='$Keterangan' where id=$pk");
+$_SESSION["edit_success"] = "Data berhasil diubah.";
 header("Location: listmasterdosenskripsidetail.php?NIDN=$NIDN");
 mysqli_close($con);
 ?>

@@ -44,6 +44,7 @@ if( $file['error'] == 0 ){
 $Logo = $namaBaruFile; 
 if (isset($ID) && isset($Nama) && isset($Alamat) && isset($Telepon) && isset($Email) && isset($Logo)){
 mysqli_query($con, "INSERT INTO setting(ID,Nama,Alamat,Telepon,Email,Logo) VALUES ('$ID','$Nama','$Alamat','$Telepon','$Email','$Logo')");
+$_SESSION["success_message"] = "Data berhasil disimpan!";
 }
 
 tulislog("insert into setting", $con); 

@@ -15,6 +15,7 @@ if ($obj = @mysqli_fetch_object($r)) {
     include("tulislog.php");
     $NIM = mysqli_real_escape_string($con, $_REQUEST['NIM']);
     $result = mysqli_query($con, "DELETE FROM mahasiswa WHERE NIM = '" . $NIM . "'");
+    $_SESSION["delete_success"] = "Data berhasil dihapus.";
     tulislog("delete mahasiswa", $con);
     header("Location:listmahasiswa.php");
     mysqli_close($con);

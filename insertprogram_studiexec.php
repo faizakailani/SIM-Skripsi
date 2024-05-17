@@ -15,6 +15,7 @@ list($nidn_kaprodi, $nama_kaprodi) = explode('|', $Kaprodi);
 
 if (isset($Kode) && isset($Program_Studi) && isset($Kaprodi)) {
     mysqli_query($con, "INSERT INTO program_studi(Kode,Program_Studi,Kaprodi,NIDN_Kaprodi) VALUES ('$Kode','$Program_Studi','$nama_kaprodi',$nidn_kaprodi)");
+    $_SESSION["success_message"] = "Data berhasil disimpan!";
 }
 
 tulislog("insert into program_studi", $con);

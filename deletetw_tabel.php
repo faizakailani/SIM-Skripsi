@@ -16,6 +16,7 @@ if ( $obj = @mysqli_fetch_object($r) )
 include("tulislog.php");
 $tabel = mysqli_real_escape_string($con, $_REQUEST[tabel]);
 $result = mysqli_query($con, "DELETE FROM tw_tabel WHERE tabel = '". $tabel . "'");
+$_SESSION["delete_success"] = "Data berhasil dihapus.";
  tulislog("delete tw_tabel", $con); 
 header("Location:listtw_tabel.php");
 mysqli_close($con);

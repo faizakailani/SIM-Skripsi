@@ -41,6 +41,7 @@ $Foto = $namaBaruFile;
 
 if ($NIDN != "") {
 	mysqli_query($con, "INSERT INTO dosen(NIDN,Nama,Foto) VALUES ('$NIDN','$Nama','$Foto')");
+	$_SESSION["success_message"] = "Data berhasil disimpan!";
 }
 header("Location: listmasterdosenskripsi.php");
 mysqli_close($con)

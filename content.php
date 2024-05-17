@@ -4,6 +4,7 @@ if(!isset($_SESSION["Email"])){
 header("location:index.php");
 }
 ?>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <style> 
     .div-1 {   
       background-color: #ABBAEA; 
@@ -225,12 +226,12 @@ while($rowSetting = mysqli_fetch_array($setting)){
    </div>                     
            <!-- /.container-fluid -->   
 </div>      
- 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <?php   
 include("chart.php");  
 echo "<hr>";   
 ?> 
- 
+
 <?php   
 include("footer.php");  
 ?>        

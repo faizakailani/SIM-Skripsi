@@ -21,6 +21,7 @@ if ( $obj = @mysqli_fetch_object($r) )
  else
   {
  tulislog("login gagal", $con); 
+ $_SESSION["login_error"] = "Username atau password salah.";
   	header('Location:index.php');
   }
 ?>

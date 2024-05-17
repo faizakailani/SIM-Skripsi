@@ -15,6 +15,7 @@ $NIDN_Kaprodi = mysqli_real_escape_string($con, $_POST["NIDN_Kaprodi"]);
 list($nidn_kaprodi, $nama_kaprodi) = explode('|', $Kaprodi);
 
 mysqli_query($con, "update program_studi set Kode='$Kode', Program_Studi='$Program_Studi', Kaprodi='$nama_kaprodi', NIDN_Kaprodi='$nidn_kaprodi' where Kode='$pk'");
+$_SESSION["edit_success"] = "Data berhasil diubah.";
 tulislog("update program_studi", $con);
 header("Location: listprogram_studi.php");
 mysqli_close($con);

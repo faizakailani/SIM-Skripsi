@@ -21,6 +21,7 @@ $Nilai_Akhir= mysqli_real_escape_string($con, $_POST["Nilai_Akhir"]);
 $Keterangan= mysqli_real_escape_string($con, $_POST["Keterangan"]);
 
  mysqli_query($con, "INSERT INTO skripsi(id,NIM,Pembimbing,Penguji1,Penguji2,Tanggal_Daftar,Tanggal_Sidang,Ruang_Sidang,Nilai_Pembimbing,Nilai_Penguji1,Nilai_Penguji2,Nilai_Akhir,Keterangan) VALUES (null,'$NIM','$Pembimbing','$Penguji1','$Penguji2','$Tanggal_Daftar','$Tanggal_Sidang','$Ruang_Sidang','$Nilai_Pembimbing','$Nilai_Penguji1','$Nilai_Penguji2','$Nilai_Akhir','$Keterangan')");
-header("Location: listmastermahasiswaskripsidetail.php?NIM=$NIM");
+ $_SESSION["success_message"] = "Data berhasil disimpan!";
+ header("Location: listmastermahasiswaskripsidetail.php?NIM=$NIM");
 mysqli_close($con)
 ?>
