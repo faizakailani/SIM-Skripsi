@@ -10,7 +10,7 @@ include("header.php");
 include("menu.php");
 include("tulislog.php");
 ?>
-<div id="page-wrapper">
+<div id="page-wrapper" style="padding-top: 2rem;">
     <?php
     //cek otoritas
     $q = "SELECT * FROM tw_hak_akses where tabel='program_studi/mahasiswa' and user = '" . $_SESSION['Email'] . "' and editData='1'";
